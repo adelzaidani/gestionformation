@@ -20,3 +20,5 @@ class Sign_upForm(UserCreationForm):
                   'number','postal_code','locality','phone',
                   'place_of_birth','birth_date',
                   'degree','password1', 'password2',)
+
+

@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Inscription au site</h1>
+    {% block content %}
+        <h1>Inscription au site</h1>
 
-<form class="sign_up" action="{% url 'account:sign_up' %}" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+        <form class="sign_up" action="{% url 'account:sign_up' %}" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
 
-    <input type="submit" value="S'inscrire">
+            <input type="submit" value="S'inscrire">
 
-</form>
-
-
-</body>
-</html>
+        </form>
+    {% endblock content %}
