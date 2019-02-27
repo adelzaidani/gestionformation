@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import Sign_upForm
+from .forms import Sign_upForm, EditUserForm,EditProfileForm
 from django.contrib.auth import login, authenticate
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView
@@ -36,15 +36,6 @@ def sign_up(request):
 
     return render(request,'account/sign_up.html',{'form':form})
 
-class ProfileUpdate(UpdateView):
-
-    fields = '__all__'
-
-    model = Profile
-    success_url = reverse_lazy('my_profile')
-
-    def get_object(self):
-        return self.request.user.profile
 
 
 
@@ -56,3 +47,20 @@ class MyProfile(DetailView):
 
     def get_object(self):
         return self.request.user.profile
+
+
+
+def editProfile(request):
+    if request.method== 'POST':
+        form_user=EditUserForm(request.POST,instance=request.user)
+        form_profile = EditProfileForm(request.POST, instance=request.user.profile)
+
+        if form_user.is_valid() and form_profile.is_valid():
+            form_user.save()
+            form_profile.save()
+            return render(request,'account/my_profile.html')
+    else:
+        form_user = EditUserForm(instance=request.user)
+        form_profile=EditProfileForm(instance=request.user.profile)
+        return render(request,'account/edit_profile.html',{'form_user':form_user, 'form_profile':form_profile})
+

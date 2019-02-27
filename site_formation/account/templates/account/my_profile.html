@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
     {% block content %}
     <h4>Profil</h4>
+        <div class="container">
             <div class="form-group">
                 <label class="control label col-sm-2">Nom d'utilisateur :</label>
                 <div class="col-sm-10">{{user.username}}</div>
@@ -45,5 +46,6 @@
                 <label class="control label col-sm-2">Diplôme :</label>
                 <div class="col-sm-10">{{user.profile.degree}}</div>
              </div>
+        </div>
 
     {% endblock content%}
