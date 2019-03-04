@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import Sign_upForm, EditUserForm,EditProfileForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.views.generic import DetailView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from .models import Profile
 
-def home(request):
-    return render(request,'home.html')
+
 
 
 def sign_up(request):
@@ -64,3 +64,18 @@ def editProfile(request):
         form_profile=EditProfileForm(instance=request.user.profile)
         return render(request,'account/edit_profile.html',{'form_user':form_user, 'form_profile':form_profile})
 
+
+def password_change(request):
+    if request.method=='POST':
+        form=PasswordChangeForm(data=request.POST,user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('account:my_profile')
+        else:
+
+            return redirect('account:change_password')
+    else:
+        form=PasswordChangeForm(user=request.user)
+        return render(request,'account/change_password.html',{'form':form})

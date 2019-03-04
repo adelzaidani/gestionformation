@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account',
     'phonenumber_field',
     'formation',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -122,5 +123,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL='home'
-LOGOUT_REDIRECT_URL='home'
+LOGIN_REDIRECT_URL='home:home'
+LOGOUT_REDIRECT_URL='home:home'
