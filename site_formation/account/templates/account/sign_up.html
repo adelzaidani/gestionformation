@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
     {% block content %}
-        <h1>Inscription au site</h1>
+        <h4>Inscription au site</h4>
 
         <form class="sign_up" action="{% url 'account:sign_up' %}" method="POST">
             {% csrf_token %}
-            {{form.as_p}}
+            {{form|crispy}}
 
-            <input type="submit" value="S'inscrire">
+            <input type="submit" class="btn btn-success" value="S'inscrire">
 
         </form>
     {% endblock content %}

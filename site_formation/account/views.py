@@ -39,14 +39,6 @@ def sign_up(request):
 
 
 
-class MyProfile(DetailView):
-
-
-    template_name = 'account/my_profile.html'
-
-
-    def get_object(self):
-        return self.request.user.profile
 
 
 

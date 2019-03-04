@@ -1,13 +1,13 @@
 {% extends 'base.html'%}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="container">
         <form method="post">
             {% csrf_token %}
-            {{form_user.as_p}}
-            {{form_profile.as_p}}
-            <button type="submit"> Editer profil</button>
+            {{form_user|crispy}}
+            {{form_profile|crispy}}
+            <button type="submit" class="btn btn-success">Valider mes informations</button>
         </form>
     </div>
 
