@@ -3,7 +3,7 @@
     {% block content %}
         <h4>Inscription au site</h4>
 
-        <form class="sign_up" action="{% url 'account:sign_up' %}" method="POST">
+        <form class="sign_up" action="{% url 'sign_up' %}" method="POST">
             {% csrf_token %}
             {{form|crispy}}
 

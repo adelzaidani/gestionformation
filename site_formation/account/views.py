@@ -30,7 +30,7 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('home:home')
     else:
         form = Sign_upForm()
 
@@ -50,7 +50,7 @@ def editProfile(request):
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()
             form_profile.save()
-            return render(request,'account/my_profile.html')
+            return render(request,'account/edit_profile.html')
     else:
         form_user = EditUserForm(instance=request.user)
         form_profile=EditProfileForm(instance=request.user.profile)
@@ -64,7 +64,7 @@ def password_change(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('account:my_profile')
+            return redirect('account:edit_profile')
         else:
 
             return redirect('account:change_password')
