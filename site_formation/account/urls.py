@@ -4,6 +4,10 @@ from django.contrib.auth.views import \
     (LoginView,LogoutView,
      )
 from django.contrib.auth import views as auth_views
+from django.urls import path, include
+from .views import sign_up ,editProfile, password_change
+from django.contrib.auth.views import LoginView,LogoutView
+
 
 
 #app_name='account'

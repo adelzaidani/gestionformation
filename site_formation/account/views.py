@@ -25,7 +25,6 @@ def sign_up(request):
             user.profile.birth_date = form.cleaned_data.get('birth_date')
             user.profile.place_of_birth = form.cleaned_data.get('place_of_birth')
             user.profile.degree = form.cleaned_data.get('degree')
-            user.profile.is_student=True
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -35,9 +34,6 @@ def sign_up(request):
         form = Sign_upForm()
 
     return render(request,'account/sign_up.html',{'form':form})
-
-
-
 
 
 
@@ -64,7 +60,7 @@ def password_change(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('account:edit_profile')
+            return redirect('edit_profile')
         else:
 
             return redirect('account:change_password')

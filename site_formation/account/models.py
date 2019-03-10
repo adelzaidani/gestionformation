@@ -5,8 +5,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-# Create your models here.
-
 #Création du model Profil
 
 class Profile(models.Model):
@@ -19,11 +17,21 @@ class Profile(models.Model):
     place_of_birth=models.CharField(max_length=150)
     birth_date=models.DateField(null=True)
     degree=models.CharField(max_length=150)
-    is_student=models.BooleanField(default=False)
-    is_teacher=models.BooleanField(default=False)
+    USER_TYPE_CHOICES = (
+        (1, 'Etudiant'),
+        (2, 'Formateur'),
+    )
+
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES,default=1)
+
+    def __str__(self):
+        return self.user.last_name +'  '+self.user.first_name
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+
+
