@@ -34,4 +34,3 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 
-
