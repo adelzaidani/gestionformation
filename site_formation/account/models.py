@@ -9,14 +9,14 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    street=models.CharField(max_length=100)
-    number=models.IntegerField(null=True)
-    postal_code=models.IntegerField(null=True)
-    locality=models.CharField(max_length=150)
-    phone=PhoneNumberField()
-    place_of_birth=models.CharField(max_length=150)
-    birth_date=models.DateField(null=True)
-    degree=models.CharField(max_length=150)
+    street=models.CharField(verbose_name='Rue',max_length=100)
+    number=models.IntegerField(verbose_name='Numéro',null=True)
+    postal_code=models.IntegerField(verbose_name='Code Postal',null=True)
+    locality=models.CharField(verbose_name='Localité',max_length=150)
+    phone=PhoneNumberField(verbose_name='Télephone')
+    place_of_birth=models.CharField(verbose_name='Lieu de naissance',max_length=150)
+    birth_date=models.DateField(verbose_name='Date de naissance',null=True)
+    degree=models.CharField(verbose_name='Diplome',max_length=150)
     USER_TYPE_CHOICES = (
         (1, 'Etudiant'),
         (2, 'Formateur'),
