@@ -1,17 +1,17 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href=" {% url 'home:home' %}">Gestion formations</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'home:home' %}">Home</a></li>
 
-            <li><a href="{% url 'sign_up'%}">Inscription</a></li>
-            <li><a href="{% url 'change_password'%}">Modifier Mot de passe</a></li>
-            <li><a href="{% url 'edit_profile'%}">Profil</a></li>
-            <li><a href="{% url 'training:list_training' %}">Formations</a></li>
-            <li><a href="{% url 'login' %}"> Connexion</a></li>
-            <li><a href="{% url 'logout' %}"> Deconnexion</a>  </li>
-        </ul>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'home:home' %}">Gestion formations</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'home:home' %}">Accueil</a></li>
+      <li><a href="{% url 'sign_up'%}">Inscription</a></li>
+      <li><a href="{% url 'change_password'%}">Modifier Mot de passe</a></li>
+      <li><a href="{% url 'edit_profile'%}">Profil</a></li>
+      <li><a href="{% url 'training:list_training' %}">Formations</a></li>
+      <li><a href="{% url 'login' %}">Connexion</a></li>
+      <li><a href="{% url 'logout' %}">Deconnexion</a>  </li>
+    </ul>
+  </div>
 </nav>

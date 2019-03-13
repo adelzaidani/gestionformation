@@ -2,21 +2,32 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <title>Gestion de formations en ligne </title>
 </head>
 <body>
-    <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-8">
-              <h1 class="mt-2">Gestion formations en ligne</h1>
-              <hr class="mt-0 mb-4">
-              {% block content %}
 
-              {% endblock %}
-            </div>
+      <div class="jumbotron text-center">
+          <div>
+              <h1>Gestion formations 2018-2019</h1>
           </div>
+
+      </div>
+    <div class="container">
+        {% include 'nav.html'%}
     </div>
+
+
+        <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-8">
+                  <hr class="mt-0 mb-4">
+                  {% block content %}
+
+                  {% endblock %}
+                </div>
+              </div>
+        </div>
 
 
 

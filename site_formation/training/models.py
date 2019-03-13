@@ -42,6 +42,7 @@ class Session(models.Model):
     places_max=models.IntegerField(verbose_name='Nombre de places',null=True)
     availabe_places=models.IntegerField(verbose_name='Nombre de places restantes',null=True)
     training = models.ForeignKey(Training, on_delete=models.CASCADE)
+    full=models.BooleanField(verbose_name='Complet',default=False)
 
 
 
@@ -49,7 +50,14 @@ class Session(models.Model):
         verbose_name='Session'
         verbose_name_plural = 'Sessions'
 
+    def get_available_places(self):
+        return self.availabe_places
+
+    def is_full(self):
+        return self.full
+
+
 
     def __str__(self):
-        return 'debut '+ self.date_of_begin.strftime('%d/%m/%Y') + '  fin  '\
+        return 'Du '+ self.date_of_begin.strftime('%d/%m/%Y') + '  au  '\
                + self.date_of_finish.strftime('%d/%m/%Y') + '  '+self.training.__str__()

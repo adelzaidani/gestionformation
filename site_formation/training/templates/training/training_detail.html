@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+    <h4>{{training.name}}</h4>
+
+    <h5> <span>Description</span></h5>
+        <p>{{training.description}}</p>
+    <h5> <span>Prix</span></h5>
+        <p>{{training.price}} €</p>
+    <h5> <span>Heures</span></h5>
+        <p>{{training.number_hours}}</p>
+    <h5> <span>Formateur</span></h5>
+        <p>{{training.teacher}}</p>
+
+      <h5> <span>Sessions disponibles</span></h5>
+
+
+    {% if session.is_full == true %}
+        <p> Pas de sessions disponibles !</p>
+    {% else %}
+        <div class="container">
+
+          <form>
+            <div class="form-group">
+              <label for="select_session">Choisir une session:</label>
+              <select class="form-control" id="sel1">
+                  {% for session in sessions%}
+                        <option>{{session}}</option>
+                  {% endfor%}
+              </select>
+            </div>
+          </form>
+        </div>
+    {% endif%}
+
+    <input type="submit" class="btn btn-danger" value="S'inscrire">
+
+</div>
+
+
+
+
+{% endblock content %}
