@@ -53,8 +53,7 @@ class Session(models.Model):
     def get_available_places(self):
         return self.availabe_places
 
-    def is_full(self):
-        return self.full
+
 
 
 

@@ -18,7 +18,7 @@ class TrainingListView(ListView):
 
 def training_detail(request,id):
     training=get_object_or_404(Training,id=id)
-    sessions=Session.objects.filter(training=id)
+    sessions=Session.objects.filter(training=id,full=False)
     context={'training':training,'sessions':sessions}
     return render(request,'training/training_detail.html',context)
 

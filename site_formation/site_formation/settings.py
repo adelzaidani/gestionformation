@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'training',
     'home',
     'crispy_forms',
+    'booking',
+
+
 ]
 
 
