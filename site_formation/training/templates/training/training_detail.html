@@ -16,25 +16,11 @@
         <p>{{training.teacher}}</p>
 
     <h5> <span>Sessions disponibles</span></h5>
-        {% if not sessions %}
-            <p> il n'existe pas de session disponible pour cette formation !</p>
-
-        {% else %}
-            <div class="container">
-              <form>
-                <div class="form-group">
-                  <label for="select_session">Choisir une session:</label>
-                  <select class="form-control" id="sel1">
-                      {% for session in sessions%}
-                            <option value="{{session}}">{{session}}</option>
-                      {% endfor%}
-                  </select>
-                </div>
-              </form>
-              <input type="submit" class="btn btn-danger" value="S'inscrire">
-            </div>
-        {% endif%}
-
+        <form class="choice_session" method="POST" action="">
+            {% csrf_token %}
+            {{form_session|crispy}}
+            <input type="submit" class="btn btn-success" value="S'inscrire">
+        </form>
 
 
 </div>
