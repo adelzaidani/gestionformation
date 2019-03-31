@@ -30,9 +30,9 @@ def training_detail(request,id):
         if form_session.is_valid() and request.user.is_authenticated:
             session=form_session.cleaned_data['sessions']
             student=Profile.objects.get(user=request.user)
-            registration_session=RegistrationSession.objects.create(session=session,student=student)
-
-            return redirect('training:list_training')
+            if  not RegistrationSession.studentRegisterExist(session,student):
+                registration_session=RegistrationSession.objects.create(session=session,student=student)
+                return redirect('training:list_training')
 
 
     else:

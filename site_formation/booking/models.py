@@ -21,3 +21,11 @@ class RegistrationSession(models.Model):
 
     def __str__(self):
         return self.session.__str__()
+
+    @staticmethod
+    def studentRegisterExist(session,student):
+        if RegistrationSession.objects.filter(session=session,student=student):
+            return True
+
+        return False
+        studentRegisterExist=staticmethod(studentRegisterExist)

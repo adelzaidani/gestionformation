@@ -39,8 +39,7 @@ class Training(models.Model):
 class Session(models.Model):
     date_of_begin=models.DateField(verbose_name='Date de début',null=True)
     date_of_finish=models.DateField(verbose_name='Date de fin',null=True)
-    places_max=models.IntegerField(verbose_name='Nombre de places',null=True)
-    availabe_places=models.IntegerField(verbose_name='Nombre de places restantes',null=True)
+    seats_max=models.IntegerField(verbose_name='Nombre de places',null=True)
     training = models.ForeignKey(Training, on_delete=models.CASCADE)
     full=models.BooleanField(verbose_name='Complet',default=False)
 
@@ -50,9 +49,9 @@ class Session(models.Model):
         verbose_name='Session'
         verbose_name_plural = 'Sessions'
 
-    def get_available_places(self):
-        return self.availabe_places
 
+    def available_sites(self, seat):
+        return self.seats_max-
 
 
 
