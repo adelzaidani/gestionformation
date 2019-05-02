@@ -7,7 +7,7 @@ from account.models import Profile
 class RegistrationSession(models.Model):
     session=models.ForeignKey(Session,verbose_name='Session',on_delete=models.CASCADE)
     student=models.ForeignKey(Profile,verbose_name='Etudiant',on_delete=models.CASCADE,limit_choices_to={'user_type': 1})
-    date_of_registration=models.DateTimeField(verbose_name="Date d' inscription",auto_now=True)
+    date_of_registration=models.DateTimeField(verbose_name="Date d' inscription",auto_now=True,null=True)
 
     STATUS = (
             (1, 'En Attente'),
@@ -15,6 +15,7 @@ class RegistrationSession(models.Model):
         )
 
     status = models.PositiveSmallIntegerField(verbose_name='Statut',choices=STATUS,default=1)
+
     class Meta:
         verbose_name="Inscription à une session"
         verbose_name_plural='Inscription aux sessions'
@@ -29,3 +30,20 @@ class RegistrationSession(models.Model):
 
         return False
         studentRegisterExist=staticmethod(studentRegisterExist)
+
+    """
+    Méthode qui permet de savoir le nombre de place déja réservée pour une session determinée.
+    """
+    def number_seats_booked(self,session):
+        return RegistrationSession.objects.count(session=session)
+
+    """
+    Méthode qui permet de voir le nombre de place disponible
+    pour une session de formation transmise en paramètre.
+       
+    """
+
+    def available_sites(self, session):
+        seats_booked=RegistrationSession.number_seats_booked(session)
+
+        return self.seats_max - seats_booked

@@ -32,6 +32,7 @@ def training_detail(request,id):
             student=Profile.objects.get(user=request.user)
             if  not RegistrationSession.studentRegisterExist(session,student):
                 registration_session=RegistrationSession.objects.create(session=session,student=student)
+
                 return redirect('training:list_training')
 
 
@@ -41,7 +42,9 @@ def training_detail(request,id):
         form_session.fields['sessions'].queryset = Session.objects.filter(training=id, full=False)
 
 
-    context={'training':training,'form_session':form_session}
+    context={'training':training,
+             'form_session':form_session,
+             }
 
 
 

@@ -45,13 +45,16 @@ class Session(models.Model):
 
 
 
+
+
+
+
     class Meta:
         verbose_name='Session'
         verbose_name_plural = 'Sessions'
 
 
-    def available_sites(self, seat):
-        return self.seats_max-
+
 
 
 
