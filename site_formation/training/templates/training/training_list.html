@@ -4,6 +4,8 @@
 
     <h4>Formations 2018-2019</h4>
 
+
+
     <ul>
         {% for training in object_list %}
             <li> <a href="{% url 'training:detail_training' id=training.pk %}">{{ training }}</a></li>

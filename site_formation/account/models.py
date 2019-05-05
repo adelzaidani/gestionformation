@@ -20,9 +20,10 @@ class Profile(models.Model):
     USER_TYPE_CHOICES = (
         (1, 'Etudiant'),
         (2, 'Formateur'),
+        (3, 'Administrateur'),
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES,default=1)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES,default=1, verbose_name='Type')
 
     def __str__(self):
         return self.user.last_name +'  '+self.user.first_name

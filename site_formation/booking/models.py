@@ -34,8 +34,9 @@ class RegistrationSession(models.Model):
     """
     Méthode qui permet de savoir le nombre de place déja réservée pour une session determinée.
     """
-    def number_seats_booked(self,session):
-        return RegistrationSession.objects.count(session=session)
+    def number_seats_booked(self):
+        return RegistrationSession.objects.filter(session=self.session).count()
+
 
     """
     Méthode qui permet de voir le nombre de place disponible

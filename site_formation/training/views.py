@@ -19,6 +19,8 @@ class TrainingListView(ListView):
     template_name = 'training/training_list.html'
     queryset = Training.objects.all()
 
+def category(request):
+    render(request,'training/training_list.html',)
 
 def training_detail(request,id):
     training=get_object_or_404(Training,id=id)
