@@ -7,6 +7,7 @@ from .forms import ChoiceSessionForm
 from booking.models import RegistrationSession
 from account.models import Profile
 
+
 # Create your views here.
 
 
@@ -19,8 +20,6 @@ class TrainingListView(ListView):
     template_name = 'training/training_list.html'
     queryset = Training.objects.all()
 
-def category(request):
-    render(request,'training/training_list.html',)
 
 def training_detail(request,id):
     training=get_object_or_404(Training,id=id)
@@ -53,3 +52,11 @@ def training_detail(request,id):
 
     return render(request,'training/training_detail.html',context)
 
+'''
+La vue my_training va permettre d'afficher l'ensemble des réservations de formations pour
+un utilisateur déterminé.
+'''
+def my_training(request):
+    current_user=request.user.profile
+    booking_user=RegistrationSession.objects.filter(student=current_user)
+    return render(request,'training/my_training.html',{'booking_user':booking_user})

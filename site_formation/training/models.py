@@ -23,7 +23,7 @@ class Training(models.Model):
     name=models.CharField(verbose_name='Nom de la formation', max_length=150)
     description=models.TextField(verbose_name='Description')
     price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
-    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE, verbose_name='Catégorie')
     number_hours=models.IntegerField(verbose_name='Nombre d''heures')
     teacher=models.ForeignKey(Profile,on_delete=models.CASCADE,verbose_name='Formateur',
                               limit_choices_to={'user_type': 2})

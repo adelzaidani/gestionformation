@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <h4>Liste des inscriptions aux formations</h4>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Formations</th>
+      <th scope="col">Date de début</th>
+      <th scope="col">Date de fin</th>
+      <th scope="col">Date d'inscription</th>
+      <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+
+       {% for booking in booking_user  %}
+        <tr>
+            <td>{{booking.session.training.name}}</td>
+            <td>{{booking.session.date_of_begin}}</td>
+            <td>{{booking.session.date_of_finish}}</td>
+            <td>{{booking.date_of_registration}}</td>
+            <td>{{booking.get_status_display}}</td>
+        </tr>
+    {% endfor%}
+
+  </tbody>
+</table>
+
+
+</div>
+
+{% endblock content %}

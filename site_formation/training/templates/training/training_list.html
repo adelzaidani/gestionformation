@@ -4,12 +4,21 @@
 
     <h4>Formations 2018-2019</h4>
 
+    {% for training_one in object_list %}
+
+        <h5> {{ training_one.category.name }} </h5>
+
+        <ul>
+            {% for training in object_list %}
+                {% if training_one.category == training.category %}
+                    <li> <a href="{% url 'training:detail_training' id=training.pk %}">{{ training }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    {% endfor%}
 
 
-    <ul>
-        {% for training in object_list %}
-            <li> <a href="{% url 'training:detail_training' id=training.pk %}">{{ training }}</a></li>
 
-        {% endfor %}
-    </ul>
+
 {% endblock content %}
