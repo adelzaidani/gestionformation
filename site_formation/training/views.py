@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404
 from .forms import ChoiceSessionForm
 from booking.models import RegistrationSession
 from account.models import Profile
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 
 
@@ -63,3 +65,24 @@ def my_training(request):
     booking_user=RegistrationSession.objects.filter(student=current_user)
     return render(request,'training/my_training.html',{'booking_user':booking_user})
 
+'''
+La vue update_registration permet d'annuler une inscription elle prend 
+comme paramètre request et l'id de l'inscription.
+'''
+def update_registration(request,id_registration):
+
+    if request.method== 'POST':
+        try:
+            registration = RegistrationSession.objects.get(id=id_registration, student=request.user.profile)
+            registration.status=3
+            registration.save()
+        except ObjectDoesNotExist():
+            messages.ERROR(request,"Votre formation n'a pas pu être annuler .")
+            return redirect('training:my_training')
+
+        messages.success(request, 'Votre inscription à bien été annuler .')
+        return redirect('training:my_training')
+
+
+
+    return redirect('training:my_training')

@@ -6,6 +6,14 @@
     <div class="row">
         <div class="col-sm-10">
             <h4>Liste des inscriptions aux formations</h4>
+
+            {% if messages %}
+                <div class="alert alert-info">
+                    {% for message in messages %}
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <table class="table table-striped">
                   <thead>
                     <tr>
@@ -20,8 +28,9 @@
                   <tbody>
                         {% for booking in booking_user  %}
                             <tr>
-                                <form class="update_status" method="POST" action="">
+                                <form class="update_status" method="POST" action="{% url 'training:update_registration' id_registration=booking.pk %}">
                                     {% csrf_token %}
+                                    <td class="hide">{{booking.id}}</td>
                                     <td>{{booking.session.training.name}}</td>
                                     <td>{{booking.session.date_of_begin}}</td>
                                     <td>{{booking.session.date_of_finish}}</td>
@@ -33,7 +42,9 @@
                                 </form>
 
                             </tr>
-                         {% endfor%}
+                        {% empty %}
+                            <p>Vous n'avez pas d'inscription ! </p>
+                        {% endfor%}
                   </tbody>
             </table>
 

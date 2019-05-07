@@ -8,4 +8,5 @@ urlpatterns = [
     path('',views.TrainingListView.as_view(),name='list_training'),
     path('<int:id>/',views.training_detail,name='detail_training'),
     path('my_training/',views.my_training,name='my_training'),
+    path('update_registration/<int:id_registration>/',views.update_registration,name='update_registration'),
 ]
