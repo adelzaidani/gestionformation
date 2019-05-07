@@ -14,40 +14,43 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Formations</th>
-                      <th scope="col">Date de début</th>
-                      <th scope="col">Date de fin</th>
-                      <th scope="col">Date d'inscription</th>
-                      <th scope="col">Prix</th>
-                      <th scope="col">Statut</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                        {% for booking in booking_user  %}
-                            <tr>
-                                <form class="update_status" method="POST" action="{% url 'training:update_registration' id_registration=booking.pk %}">
-                                    {% csrf_token %}
-                                    <td class="hide">{{booking.id}}</td>
-                                    <td>{{booking.session.training.name}}</td>
-                                    <td>{{booking.session.date_of_begin}}</td>
-                                    <td>{{booking.session.date_of_finish}}</td>
-                                    <td>{{booking.date_of_registration}}</td>
-                                    <td>{{booking.session.training.price}} €</td>
-                                    <td>{{booking.get_status_display}}</td>
-                                    <td><input type="submit" class="btn btn-danger" value="Annuler"></td>
+            {% if not booking_user %}
+                <p>Vous n'avez pas d'inscription ! </p>
+            {% else %}
 
-                                </form>
+                <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Formations</th>
+                          <th scope="col">Date de début</th>
+                          <th scope="col">Date de fin</th>
+                          <th scope="col">Date d'inscription</th>
+                          <th scope="col">Prix</th>
+                          <th scope="col">Statut</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                            {% for booking in booking_user  %}
+                                <tr>
+                                    <form class="update_status" method="POST" action="{% url 'training:update_registration' id_registration=booking.pk %}">
+                                        {% csrf_token %}
+                                        <td class="hide">{{booking.id}}</td>
+                                        <td>{{booking.session.training.name}}</td>
+                                        <td>{{booking.session.date_of_begin}}</td>
+                                        <td>{{booking.session.date_of_finish}}</td>
+                                        <td>{{booking.date_of_registration}}</td>
+                                        <td>{{booking.session.training.price}} €</td>
+                                        <td>{{booking.get_status_display}}</td>
+                                        <td><input type="submit" class="btn btn-danger" value="Annuler"></td>
 
-                            </tr>
-                        {% empty %}
-                            <p>Vous n'avez pas d'inscription ! </p>
-                        {% endfor%}
-                  </tbody>
-            </table>
+                                    </form>
 
+                                </tr>
+
+                            {% endfor%}
+                      </tbody>
+                </table>
+            {% endif %}
         </div>
 
 

@@ -62,7 +62,7 @@ un utilisateur déterminé.
 def my_training(request):
 
     current_user=request.user.profile
-    booking_user=RegistrationSession.objects.filter(student=current_user)
+    booking_user=RegistrationSession.objects.filter(student=current_user).exclude(status=3)
     return render(request,'training/my_training.html',{'booking_user':booking_user})
 
 '''
