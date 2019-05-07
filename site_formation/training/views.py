@@ -8,6 +8,7 @@ from booking.models import RegistrationSession
 from account.models import Profile
 
 
+
 # Create your views here.
 
 
@@ -57,6 +58,8 @@ La vue my_training va permettre d'afficher l'ensemble des réservations de forma
 un utilisateur déterminé.
 '''
 def my_training(request):
+
     current_user=request.user.profile
     booking_user=RegistrationSession.objects.filter(student=current_user)
     return render(request,'training/my_training.html',{'booking_user':booking_user})
+

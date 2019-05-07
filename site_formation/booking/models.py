@@ -12,6 +12,7 @@ class RegistrationSession(models.Model):
     STATUS = (
             (1, 'En Attente'),
             (2, 'Confirmer'),
+            (3, 'Annuler'),
         )
 
     status = models.PositiveSmallIntegerField(verbose_name='Statut',choices=STATUS,default=1)
