@@ -5,5 +5,5 @@ from .views import print_invoice
 app_name='billing'
 
 urlpatterns = [
-    path('',print_invoice,name='invoice'),
+    path('<int:id_session>/',print_invoice,name='print_invoice'),
     ]

@@ -42,7 +42,8 @@ def training_detail(request,id):
             if  not RegistrationSession.studentRegisterExist(session,student):
                 registration_session=RegistrationSession.objects.create(session=session,student=student)
                 price_booking=registration_session.session.training.price
-                invoice=Invoice.objects.create(session=session,client=student,status=1,price=price_booking)
+                invoice=Invoice.objects.create(session=session,client=student,status=1,
+                                               price=price_booking,booking=registration_session.id)
 
                 return redirect('training:list_training')
 

@@ -1,6 +1,7 @@
 from django.db import models
 from training.models import Session
 from account.models import Profile
+from booking.models import RegistrationSession
 
 # Create your models here.
 class Invoice(models.Model):
@@ -15,3 +16,4 @@ class Invoice(models.Model):
 
     status = models.PositiveSmallIntegerField(verbose_name='Statut', choices=STATUS, default=1)
     price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
+    booking=models.ForeignKey(RegistrationSession, on_delete=models.CASCADE, verbose_name='Reservation')

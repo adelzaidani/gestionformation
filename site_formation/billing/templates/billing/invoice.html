@@ -19,9 +19,9 @@
         <div><a href="mailto:company@example.com">adelicctfe@gmail.com</a></div>
       </div>
       <div id="project">
-        <div><span>CLIENT</span>{{invoice.client.profile.user.last_name}}</div>
-        <div><span>ADDRESS</span>{{invoice.client.profile.street}} {{invoice.client.profile.number}}</div>
-        <div><span>EMAIL</span> <a>{{invoice.client.profile.user.email}}</a></div>
+        <div><span>CLIENT</span>{{invoice.client.user.last_name}} {{invoice.client.user.first_name}}</div>
+        <div><span>ADRESSE</span>{{invoice.client.street}} {{invoice.client.number}}</div>
+        <div><span>EMAIL</span> <a>{{invoice.client.user.email}}</a></div>
         <div><span>DATE</span> {{invoice.date}}</div>
       </div>
     </header>
@@ -29,7 +29,8 @@
       <table>
         <thead>
           <tr>
-            <th class="service">SERVICE</th>
+            <th class="service">N° SESSION</th>
+            <th class="service">N° RESERVATION</th>
             <th class="desc">DESCRIPTION</th>
             <th>PRIX</th>
             <th>QUANTITE</th>
@@ -38,34 +39,24 @@
         </thead>
         <tbody>
           <tr>
-            <td class="service">Design</td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
+            <td class="service">{{invoice.session.id}}</td>
+            <td class="service">{{invoice.booking.id}}</td>
+            <td class="desc">{{invoice.session.training.name}}</td>
+            <td class="unit">{{invoice.price}}</td>
             <td class="qty">1</td>
-            <td class="total">$1,040.00</td>
+            <td class="total">{{invoice.price}} €</td>
           </tr>
 
           <tr>
-            <td colspan="4">SOUS TOTAL</td>
-            <td class="total">$5,200.00</td>
-          </tr>
-          <tr>
-            <td colspan="4">TVA 21%</td>
-            <td class="total">$1,300.00</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
+            <td colspan="5" class="grand total">TOTAL TTC</td>
+            <td class="grand total">{{invoice.price}} €</td>
           </tr>
         </tbody>
       </table>
-      <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div>
+
     </main>
     <footer>
-      Invoice was created on a computer and is valid without the signature and seal.
+
     </footer>
   </body>
 </html>

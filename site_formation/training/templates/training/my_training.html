@@ -42,6 +42,7 @@
                                         <td>{{booking.date_of_registration}}</td>
                                         <td>{{booking.session.training.price}} €</td>
                                         <td>{{booking.get_status_display}}</td>
+                                        <td><a href="{% url 'billing:print_invoice' id_session=booking.session.pk %}">Facture</a></td>
                                         <td><input type="submit" class="btn btn-danger" value="Annuler"></td>
 
                                     </form>
