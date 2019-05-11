@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'booking',
     'billing',
-    'xhtml2pdf',
 
 
 ]

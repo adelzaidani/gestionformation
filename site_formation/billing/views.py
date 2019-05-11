@@ -1,26 +1,30 @@
 from django.shortcuts import render,get_object_or_404
+from django.template.loader import get_template
 from django.http import HttpResponse
-from django.views.generic import View
-from .utils import render_to_pdf
+
+import pdfkit
 
 from .models import Invoice
 
 '''
-verifier avant d'afficher la facture que le client dispose bien d'une facture 
-pour le numero de session passer en parametre
-'''
-
-def print_invoice(request,id_session ):
-    client=request.user.profile
-    invoice=get_object_or_404(Invoice.objects.filter(session=id_session,client=client))
-
-    return render(request,'billing/invoice.html',{'invoice':invoice})
-
+print_invoice() permet d'afficher la facture d'une session sous le format pdf
 '''
 def print_invoice(request,id_session ):
-    client=request.user.profile
-    invoice=get_object_or_404(Invoice.objects.filter(session=id_session,client=client))
+    client = request.user.profile
+    invoice = get_object_or_404(Invoice.objects.filter(session=id_session, client=client))
+    
+    template = get_template('billing/invoice.html')
+    html = template.render({'invoice': invoice})
+    options = {
+        'page-size': 'Letter',
+        'encoding': "UTF-8",
+    }
 
-    return render_to_pdf('billing/invoice.html',{'invoice':invoice})
-'''
+    pdf = pdfkit.from_string(html,False,options)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment ; filename = facture'+str(invoice.id)+\
+                                      '_'+str(invoice.session.training.name)+\
+                                      '_'+str(invoice.client.user.last_name)+'.pdf'
+    return response
+
 
