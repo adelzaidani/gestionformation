@@ -8,6 +8,7 @@ from .models import Invoice
 
 '''
 print_invoice() permet d'afficher la facture d'une session sous le format pdf
+utilisation de la librairie pdfkit.
 '''
 def print_invoice(request,id_session ):
     client = request.user.profile

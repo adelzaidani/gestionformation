@@ -170,14 +170,14 @@
             <td class="service">{{invoice.session.id}}</td>
             <td class="service">{{invoice.booking.id}}</td>
             <td class="desc">{{invoice.session.training.name}}</td>
-            <td class="unit">{{invoice.price}}</td>
+            <td class="unit">{{invoice.session.training.price}}</td>
             <td class="qty">1</td>
-            <td class="total">{{invoice.price}} €</td>
+            <td class="total">{{invoice.session.training.price}} €</td>
           </tr>
 
           <tr>
             <td colspan="5" class="grand total">TOTAL TTC</td>
-            <td class="grand total">{{invoice.price}} €</td>
+            <td class="grand total">{{invoice.session.training.price}} €</td>
           </tr>
         </tbody>
       </table>

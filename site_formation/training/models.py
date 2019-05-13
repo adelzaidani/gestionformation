@@ -25,8 +25,7 @@ class Training(models.Model):
     price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
     category=models.ForeignKey(Category,on_delete=models.CASCADE, verbose_name='Catégorie')
     number_hours=models.IntegerField(verbose_name='Nombre d''heures')
-    teacher=models.ForeignKey(Profile,on_delete=models.CASCADE,verbose_name='Formateur',
-                              limit_choices_to={'user_type': 2})
+
 
 
     class Meta:
@@ -41,6 +40,8 @@ class Session(models.Model):
     date_of_finish=models.DateField(verbose_name='Date de fin',null=True)
     seats_max=models.IntegerField(verbose_name='Nombre de places',null=True)
     training = models.ForeignKey(Training, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Formateur',
+                                limit_choices_to={'user_type': 2},default=2)
     full=models.BooleanField(verbose_name='Complet',default=False)
 
 

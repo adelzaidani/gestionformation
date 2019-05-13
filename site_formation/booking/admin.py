@@ -3,10 +3,9 @@ from .models import RegistrationSession
 
 # Register your models here.
 class RegistrationSessionAdmin(admin.ModelAdmin):
-       list_display = ('id','student','session','date_of_registration','status')
+       list_display = ('student','session','date_of_registration','status')
 
-       fields = ('id',
-                 'session',
+       fields = ('session',
                  'student',
                  'date_of_registration',
                  'status',

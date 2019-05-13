@@ -15,5 +15,4 @@ class Invoice(models.Model):
     )
 
     status = models.PositiveSmallIntegerField(verbose_name='Statut', choices=STATUS, default=1)
-    price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
     booking=models.ForeignKey(RegistrationSession, on_delete=models.CASCADE, verbose_name='Reservation')

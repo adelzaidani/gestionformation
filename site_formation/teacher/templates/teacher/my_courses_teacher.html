@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <h4>Mes cours</h4>
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Formations</th>
+              <th scope="col">Date de début</th>
+              <th scope="col">Date de fin</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for session in session_teacher  %}
+                    <tr>
+                        <form class="show_list" method="POST" action="">
+                            {% csrf_token %}
+                            <td>{{session.training}}</td>
+                            <td>{{session.date_of_begin}}</td>
+                            <td>{{session.date_of_finish}}</td>
+                            <td><input type="submit" class="btn btn-danger" value="Liste des participants"></td>
+
+                        </form>
+
+                    </tr>
+
+                {% endfor%}
+          </tbody>
+    </table>
+
+{% endblock content%}

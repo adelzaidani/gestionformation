@@ -94,3 +94,4 @@ def update_registration(request,id_registration):
 
 
     return redirect('training:my_training')
+
