@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <h4>Liste des pésences</h4>
+        <form method="POST" class="attendance-form">{% csrf_token %}
+            <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Session</th>
+                      <th scope="col">Etudiant</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Présent/Absent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                            <tr>
+                                <td>{{form.session|as_crispy_field}}</td>
+                                <td>{{form.student|as_crispy_field}}</td>
+                                <td>{{form.date_of_attendance|as_crispy_field}}</td>
+                                <td>{{from.attendance_choices|as_crispy_field}}</td>
+                            </tr>
+
+
+                  </tbody>
+            </table>
+
+            <button type="submit" class="save btn btn-default">Enregistrer présences</button>
+        </form>
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <h4>Liste des participants</h4>
+        <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Date de naissance</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for registration in registrations  %}
+                        <tr>
+                            <td>{{registration.student.user.last_name}}</td>
+                            <td>{{registration.student.user.first_name}}</td>
+                            <td>{{registration.student.birth_date}}</td>
+                        </tr>
+
+                    {% endfor%}
+              </tbody>
+        </table>
+
+{% endblock content %}

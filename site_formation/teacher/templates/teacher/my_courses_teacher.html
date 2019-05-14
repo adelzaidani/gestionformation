@@ -10,18 +10,20 @@
               <th scope="col">Formations</th>
               <th scope="col">Date de début</th>
               <th scope="col">Date de fin</th>
+              <th scope="col">Participants</th>
+              <th scope="col">Présences</th>
             </tr>
           </thead>
           <tbody>
                 {% for session in session_teacher  %}
                     <tr>
-                        <form class="show_list" method="POST" action="">
+                        <form class="show_list" method="POST" action="{% url 'teacher:training_student' id_session=session.pk %}">
                             {% csrf_token %}
                             <td>{{session.training}}</td>
                             <td>{{session.date_of_begin}}</td>
                             <td>{{session.date_of_finish}}</td>
                             <td><input type="submit" class="btn btn-danger" value="Liste des participants"></td>
-
+                            <td><a href="{% url 'teacher:list_attendance'  %}">Présences</a></td>
                         </form>
 
                     </tr>
