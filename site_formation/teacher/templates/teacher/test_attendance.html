@@ -4,11 +4,14 @@
 
 
 {% block content %}
+
      <form method="POST" class="attendance-form">{% csrf_token %}
         <div class="container">
             <h4>Liste des pésences</h4>
                 <p>Texte ecrit en html</p>
                 <span id="text_jq"></span>
+
+
 
 
 
@@ -43,6 +46,7 @@
                         {% for registration in registrations %}
 
                             <tr>
+                                <td class="hide">{{registration.student.user.id}}</td>
                                 <td>{{registration.student.user.last_name}}</td>
                                 <td>{{registration.student.user.first_name}}</td>
                                 <td>{{registration.student.birth_date}}</td>
@@ -68,6 +72,9 @@
 
 {% endblock content %}
 
-
+    {% block jquery %}
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script src="{% static 'teacher/js/test.js' %}"></script>
+    {% endblock jquery %}
 
 
