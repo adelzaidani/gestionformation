@@ -47,20 +47,13 @@ $('#save_attendance').click(function(){
             type: "POST",
             url: "/teacher/save_attendance/",
             data: "pTableData=" + TableData,
-            dataType: 'json',
-            success: function(msg){
-                if (msg.attendance_exist){
-                    alert(data.success);
-                }
-             },
+            success: function(data){
 
-            error:function(msg){
+               alert(data.message);
 
-                alert('Erreur !');
-            }
           }
 
-         );
+         });
 
 
 
