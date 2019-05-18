@@ -10,7 +10,8 @@ $('#save_attendance').click(function(){
                 day = date_selected.getDate();
                 month = date_selected.getMonth() + 1;
                 year = date_selected.getFullYear();
-                date_string=[day, month, year].join('/');
+                date_string=[year, month,day ].join('-');
+
 
                $('#table_attendance tr').each(function(row, tr){
 
@@ -44,15 +45,24 @@ $('#save_attendance').click(function(){
 
          $.ajax({
             type: "POST",
-            url: "processJSONarray.php",
+            url: "/teacher/save_attendance/",
             data: "pTableData=" + TableData,
+            dataType: 'json',
             success: function(msg){
+                if (msg.attendance_exist){
+                    alert(data.success);
+                }
+             },
 
+            error:function(msg){
+
+                alert('Erreur !');
             }
+          }
 
-         });
+         );
 
-    console.log(TableData);
+
 
 });
 
