@@ -48,12 +48,12 @@ $('#save_attendance').click(function(){
             url: "/teacher/save_attendance/",
             data: "pTableData=" + TableData,
             success: function(data){
-               if (data.is_taken) {
-                     alert("A user with this username already exists.");
+               if (data.exist) {
+                    alert(data.message)
                 }
                 else{
 
-                    alert("Probleme");
+                    alert(data.message);
                 }
 
              }
