@@ -42,18 +42,25 @@ $('#save_attendance').click(function(){
    var TableData;
        TableData = $.toJSON(saveTable());
 
-
+         $.ajaxSetup({async: false});
          $.ajax({
             type: "POST",
             url: "/teacher/save_attendance/",
             data: "pTableData=" + TableData,
             success: function(data){
+               if (data.is_taken) {
+                     alert("A user with this username already exists.");
+                }
+                else{
 
-               alert(data.message);
+                    alert("Probleme");
+                }
 
-          }
+             }
+
 
          });
+
 
 
 
