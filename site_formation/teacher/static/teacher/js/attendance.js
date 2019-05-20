@@ -18,10 +18,10 @@ $('#save_attendance').click(function(){
 
                     if($(tr).find('td:eq(4) input:checked').is(':checked')){
 
-                      present='true';
+                      present='1';
                     }
                     else{
-                        present='false';
+                        present='2';
                     }
 
                      TableData[row]={
