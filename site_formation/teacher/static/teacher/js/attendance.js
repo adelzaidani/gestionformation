@@ -6,7 +6,7 @@ $('#save_attendance').click(function(){
              var present='false';
                 session=$('#num_session').val();
                 TableData = new Array();
-                date_selected=new Date($('#start_date').val());
+                date_selected=new Date($('#date_attendance').val());
                 day = date_selected.getDate();
                 month = date_selected.getMonth() + 1;
                 year = date_selected.getFullYear();
@@ -63,6 +63,32 @@ $('#save_attendance').click(function(){
 
 
 
+
+});
+
+$('#date_attendance').change(function(){
+    var date_selected;
+        session=$('#num_session').val();
+
+    date_selected=new Date($('#date_attendance').val())
+    day = date_selected.getDate();
+    month = date_selected.getMonth() + 1;
+    year = date_selected.getFullYear();
+    date_string=[year, month,day ].join('-');
+
+    $.ajax({
+        type:"POST",
+        url:"/teacher/list_attendance/?id_session="+session+">",
+        data:{'date_selected':date_selected},
+        dataType:'Json',
+        success:function(data){
+            alert(data.message);
+
+        }
+
+
+
+    });
 
 });
 

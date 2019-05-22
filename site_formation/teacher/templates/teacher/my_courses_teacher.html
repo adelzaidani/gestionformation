@@ -12,6 +12,7 @@
               <th scope="col">Date de fin</th>
               <th scope="col">Participants</th>
               <th scope="col">Présences</th>
+              <th scope="col">Evaluations</th>
             </tr>
           </thead>
           <tbody>
@@ -24,6 +25,7 @@
                             <td>{{session.date_of_finish}}</td>
                             <td><input type="submit" class="btn btn-danger" value="Liste des participants"></td>
                             <td><a href="{% url 'teacher:list_attendance' id_session=session.pk %}">Présences</a></td>
+                            <td><a href="{% url 'teacher:list_assessment' id_session=session.pk %}">Evaluations</a></td>
                         </form>
 
                     </tr>

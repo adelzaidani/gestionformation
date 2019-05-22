@@ -37,7 +37,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                        {% for assessment assessments %}
+                        {% for assessment in assessments %}
 
                             <tr>
                                 <td>{{assessment.student.user.id}}</td>
@@ -46,7 +46,8 @@
                                 <td>{{assessment.student.birth_date}}</td>
                                 <td>
                                     <label class="assessment_label">
-                                        <input id="assessment_id" type="number"><strong><p>/100</p></strong>
+                                        <input  type="number" id="assessment_id" value="0" min="0" max="100">
+                                        <strong><span>/100</span></strong>
                                     </label>
 
                                 </td>
@@ -56,7 +57,7 @@
                         {% endfor %}
                   </tbody>
             </table>
-            <button type="submit" id="save_attendance" class="btn btn-success">Enregistrer présences</button>
+            <button type="submit" id="save_assessment" class="btn btn-success">Enregistrer notes</button>
         </div>
 
 
