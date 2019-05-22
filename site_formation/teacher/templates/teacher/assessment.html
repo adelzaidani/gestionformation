@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+     <form method="POST" class="attendance-form">{% csrf_token %}
+        <div class="container">
+            <h4>Evaluation</h4>
+
+
+            <div class="form-group">
+                <label for="num_session">Session n°</label>
+                <input type="text" class="form-control" id="num_session" value="{{ session.id }}">
+                <label for="name_training">Formation</label>
+                <input type="text" class="form-control" id="name_training" value="{{ session.training.name }}">
+                <label for="date_of_begin">Date de début</label>
+                <input type="text" class="form-control" id="date_of_begin" value="{{ session.date_of_begin }}">
+                <label for="date_of_finish">Date de fin</label>
+                <input type="text" class="form-control" id="date_of_finish" value="{{ session.date_of_finish }}">
+
+            </div>
+
+
+
+
+
+            <table class="table table-striped" id="table_attendance">
+                  <thead>
+                    <tr>
+                      <th scope="col">N° étudiant</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Prénom</th>
+                      <th scope="col">Date de naissance</th>
+                      <th scope="col">Note</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                        {% for assessment assessments %}
+
+                            <tr>
+                                <td>{{assessment.student.user.id}}</td>
+                                <td>{{assessment.student.user.last_name}}</td>
+                                <td>{{assessment.student.user.first_name}}</td>
+                                <td>{{assessment.student.birth_date}}</td>
+                                <td>
+                                    <label class="assessment_label">
+                                        <input id="assessment_id" type="number"><p>/100</p>
+                                    </label>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+                  </tbody>
+            </table>
+            <button type="submit" id="save_attendance" class="btn btn-success">Enregistrer présences</button>
+        </div>
+
+
+    </form>
+
+
+{% endblock content %}
