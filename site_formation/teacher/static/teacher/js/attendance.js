@@ -78,11 +78,14 @@ $('#date_attendance').change(function(){
 
     $.ajax({
         type:"POST",
-        url:"/teacher/list_attendance/?id_session="+session+">",
-        data:{'date_selected':date_selected},
+        url:"/teacher/list_attendance_date_change",
+        data:{'date_selected':date_string,
+              'session':session
+              },
         dataType:'Json',
         success:function(data){
-            alert(data.message);
+
+            alert(data[0].birth_date);
 
         }
 

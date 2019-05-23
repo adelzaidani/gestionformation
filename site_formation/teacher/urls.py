@@ -9,6 +9,7 @@ urlpatterns =[
     path('list_attendance/<int:id_session>',views.list_attendance, name='list_attendance'),
     path('list_assessment/<int:id_session>',views.list_assessment,name='list_assessment'),
     path('save_attendance/',views.save_attendance, name='save_attendance'),
+    path('list_attendance_date_change',views.list_attendance_date_change,name='list_attendance_date_change'),
 
 
 ]
