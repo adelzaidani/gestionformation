@@ -84,14 +84,32 @@ $('#date_attendance').change(function(){
               },
         dataType:'Json',
         success:function(data){
+           $.each(data, function(){
 
-            alert(data[0].birth_date);
+              $("#tr-" + this.id_student + " td.id_student").html(this.id_student);
+              $("#tr-" + this.id_student + " td.last_name").html(this.last_name);
+              $("#tr-" + this.id_student + " td.first_name").html(this.first_name);
+              $("#tr-" + this.id_student + " td.birth_date").html(this.birth_date);
+              if (this.attendance == 1){
+                $("#tr-" + this.id_student +":checkbox").attr('checked', true);
+
+              }
+              else{
+                 $("#tr-" + this.id_student +":checkbox").attr('checked', false);
+              }
+
+
+
+
+
+
+            });
 
         }
-
-
 
     });
 
 });
+
+
 

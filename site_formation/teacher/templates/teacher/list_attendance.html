@@ -41,20 +41,19 @@
                   <tbody>
                         {% for attendance in attendances %}
 
-                            <tr>
-                                <td>{{attendance.student.user.id}}</td>
-                                <td>{{attendance.student.user.last_name}}</td>
-                                <td>{{attendance.student.user.first_name}}</td>
-                                <td>{{attendance.student.birth_date}}</td>
-                                <td>
-                                    <label class="attendance">
-                                        <input id="check_attendance" type="checkbox"
-                                        {% if attendance.attendance_choices == 1 %}
-                                               checked
-                                        {% endif %}
-                                        >
-                                        <span class="slider round"></span>
-                                    </label>
+                            <tr id="tr-{{attendance.student.user.id}}">
+                                <td class="id_student">{{attendance.student.user.id}}</td>
+                                <td class="last_name">{{attendance.student.user.last_name}}</td>
+                                <td class="first_name">{{attendance.student.user.first_name}}</td>
+                                <td class="birth_date">{{attendance.student.birth_date}}</td>
+                                <td class="attendance">
+
+                                    <input class="check_attendance" type="checkbox"
+                                    {% if attendance.attendance_choices == 1 %}
+                                           checked
+                                    {% endif %}
+                                    >
+
 
                                 </td>
 
