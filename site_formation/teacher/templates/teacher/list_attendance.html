@@ -38,7 +38,7 @@
                       <th scope="col">Présence</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="body_attendance">
                         {% for attendance in attendances %}
 
                             <tr id="tr-{{attendance.student.user.id}}">
@@ -48,7 +48,7 @@
                                 <td class="birth_date">{{attendance.student.birth_date}}</td>
                                 <td class="attendance">
 
-                                    <input class="check_attendance" type="checkbox"
+                                    <input id="check_attendance-{{attendance.student.user.id}}" type="checkbox"
                                     {% if attendance.attendance_choices == 1 %}
                                            checked
                                     {% endif %}

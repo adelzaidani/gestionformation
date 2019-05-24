@@ -2,42 +2,49 @@ $('#save_attendance').click(function(){
     var TableData;
     TableData = saveTable()
     TableData = $.toJSON(TableData);
-        function saveTable(){
-             var present='false';
-                session=$('#num_session').val();
-                TableData = new Array();
-                date_selected=new Date($('#date_attendance').val());
-                day = date_selected.getDate();
-                month = date_selected.getMonth() + 1;
-                year = date_selected.getFullYear();
-                date_string=[year, month,day ].join('-');
+    date_selected=new Date($('#date_attendance').val());
+    date_begin=new Date($('#date_of_begin').val());
+    date_finish=new Date($('#date_of_finish').val());
 
 
-               $('#table_attendance tr').each(function(row, tr){
+    function saveTable(){
+         var present='false';
+            session=$('#num_session').val();
+            TableData = new Array();
+            date_selected=new Date($('#date_attendance').val());
+            day = date_selected.getDate();
+            month = date_selected.getMonth() + 1;
+            year = date_selected.getFullYear();
+            date_string=[year, month,day ].join('-');
 
 
-                    if($(tr).find('td:eq(4) input:checked').is(':checked')){
-
-                      present='1';
-                    }
-                    else{
-                        present='2';
-                    }
-
-                     TableData[row]={
-                        "id_client": $(tr).find('td:eq(0)').text()
-                         ,"date":date_string
-                         ,"attendance":present
-                         ,"session":session
-
-                     }
-
-                });
+           $('#table_attendance tr').each(function(row, tr){
 
 
-        TableData.shift();
-        return TableData;
-        }
+                if($(tr).find('td:eq(4) input:checked').is(':checked')){
+
+                  present='1';
+                }
+                else{
+                    present='2';
+                }
+
+                 TableData[row]={
+                    "id_client": $(tr).find('td:eq(0)').text()
+                     ,"date":date_string
+                     ,"attendance":present
+                     ,"session":session
+
+                 }
+
+            });
+
+
+    TableData.shift();
+    return TableData;
+    }
+
+
 
    var TableData;
        TableData = $.toJSON(saveTable());
@@ -63,8 +70,9 @@ $('#save_attendance').click(function(){
 
 
 
-
 });
+
+
 
 $('#date_attendance').change(function(){
     var date_selected;
@@ -84,6 +92,7 @@ $('#date_attendance').change(function(){
               },
         dataType:'Json',
         success:function(data){
+
            $.each(data, function(){
 
               $("#tr-" + this.id_student + " td.id_student").html(this.id_student);
@@ -91,11 +100,11 @@ $('#date_attendance').change(function(){
               $("#tr-" + this.id_student + " td.first_name").html(this.first_name);
               $("#tr-" + this.id_student + " td.birth_date").html(this.birth_date);
               if (this.attendance == 1){
-                $("#tr-" + this.id_student +":checkbox").attr('checked', true);
+                $("#check_attendance-" +this.id_student).attr('checked', true);
 
               }
               else{
-                 $("#tr-" + this.id_student +":checkbox").attr('checked', false);
+                 $("#check_attendance-" +this.id_student).attr('checked', false);
               }
 
 
@@ -110,6 +119,5 @@ $('#date_attendance').change(function(){
     });
 
 });
-
 
 

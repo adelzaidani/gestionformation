@@ -26,7 +26,7 @@
 
 
 
-            <table class="table table-striped" id="table_attendance">
+            <table class="table table-striped" id="table_assessment">
                   <thead>
                     <tr>
                       <th scope="col">N° étudiant</th>
@@ -40,13 +40,13 @@
                         {% for assessment in assessments %}
 
                             <tr>
-                                <td>{{assessment.student.user.id}}</td>
-                                <td>{{assessment.student.user.last_name}}</td>
-                                <td>{{assessment.student.user.first_name}}</td>
-                                <td>{{assessment.student.birth_date}}</td>
+                                <td class="id_student">{{assessment.student.user.id}}</td>
+                                <td class="last_name">{{assessment.student.user.last_name}}</td>
+                                <td class="first_name">{{assessment.student.user.first_name}}</td>
+                                <td class="birth_date">{{assessment.student.birth_date}}</td>
                                 <td>
                                     <label class="assessment_label">
-                                        <input  type="number" id="assessment_id" value="0" min="0" max="100">
+                                        <input  type="number" class="assessment" value="0" min="0" max="100">
                                         <strong><span>/100</span></strong>
                                     </label>
 
@@ -56,6 +56,15 @@
 
                         {% endfor %}
                   </tbody>
+                  <tfoot>
+                        <tr>
+                            <th>Moyenne</th>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td id="avg"><strong>95</strong></td>
+                        </tr>
+                  </tfoot>
             </table>
             <button type="submit" id="save_assessment" class="btn btn-success">Enregistrer notes</button>
         </div>
@@ -65,3 +74,9 @@
 
 
 {% endblock content %}
+
+    {% block jquery %}
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+         <script src="{% static 'teacher/js/assessment.js' %}"></script>
+    {% endblock jquery %}
