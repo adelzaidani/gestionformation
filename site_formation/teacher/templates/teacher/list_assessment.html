@@ -5,7 +5,7 @@
 
 {% block content %}
 
-     <form method="POST" class="attendance-form">{% csrf_token %}
+     <form method="POST" class="assessment-form">{% csrf_token %}
         <div class="container">
             <h4>Evaluation</h4>
 
@@ -44,11 +44,9 @@
                                 <td class="last_name">{{assessment.student.user.last_name}}</td>
                                 <td class="first_name">{{assessment.student.user.first_name}}</td>
                                 <td class="birth_date">{{assessment.student.birth_date}}</td>
-                                <td>
-                                    <label class="assessment_label">
-                                        <input  type="number" class="assessment" value="0" min="0" max="100">
-                                        <strong><span>/100</span></strong>
-                                    </label>
+                                <td class="assessment">
+                                    <input  type="number" class="assessment" value="{{assessment.assessment}}" min="0" max="100">
+                                    <strong><span>/100</span></strong>
 
                                 </td>
 
@@ -57,13 +55,7 @@
                         {% endfor %}
                   </tbody>
                   <tfoot>
-                        <tr>
-                            <th>Moyenne</th>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td id="avg"><strong>95</strong></td>
-                        </tr>
+
                   </tfoot>
             </table>
             <button type="submit" id="save_assessment" class="btn btn-success">Enregistrer notes</button>

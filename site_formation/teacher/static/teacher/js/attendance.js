@@ -56,7 +56,7 @@ $('#save_attendance').click(function(){
             data: "pTableData=" + TableData,
             success: function(data){
                if (data.exist) {
-                    alert(data.message)
+                    alert(data.message);
                 }
                 else{
 
