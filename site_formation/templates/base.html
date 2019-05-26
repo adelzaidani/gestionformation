@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <title>Gestion de formations en ligne </title>
+    {% block head %}
+    {% endblock head %}
 </head>
 <body>
-
-      <div class="jumbotron text-center">
-          <div>
-              <h1>Gestion formations 2018-2019</h1>
-          </div>
-
-      </div>
     <div class="container">
         {% include 'nav.html'%}
+
+
     </div>
+
+    <div class="container">
+        {% block images %}
+        {% endblock images %}
+    </div>
+
+
 
 
 

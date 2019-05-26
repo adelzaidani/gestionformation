@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+    {% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static "home/css/style.css" %}">
+    {% endblock head %}
+    {% block images %}
+      <div class="jumbotron">
+
+
+      </div>
+    {% endblock images %}
 
 {% block content %}
 
