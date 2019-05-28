@@ -1,6 +1,6 @@
 
 .jumbotron{
-    background-image:url('static/img/training.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image:url('../img/training5.jpg');
+    background-size:cover;
+    min-height: 400px;
 }
