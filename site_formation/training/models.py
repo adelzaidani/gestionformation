@@ -1,6 +1,8 @@
 from django.db import models
 # Create your models here.
 from account.models import Profile
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 
@@ -25,6 +27,12 @@ class Training(models.Model):
     price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
     category=models.ForeignKey(Category,on_delete=models.CASCADE, verbose_name='Catégorie')
     number_hours=models.IntegerField(verbose_name='Nombre d''heures')
+    image_training = models.ImageField(verbose_name='Image Formation',upload_to='training', blank=True)
+
+    image_thumbnail = ImageSpecField(source='image_training',
+                                      processors=[ResizeToFill(700, 400)],
+                                      format='JPEG',
+                                      options={'quality': 99})
 
 
 

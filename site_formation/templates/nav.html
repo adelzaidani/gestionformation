@@ -1,38 +1,50 @@
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Gestion formations</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Formations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Inscription</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Espace étudiant
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+            <a class="dropdown-item" href="#">Editer profil</a>
+            <a class="dropdown-item" href="#">Modifier mot de passe</a>
+            <a class="dropdown-item" href="#">Mes formations</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Espace Formateur
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+            <a class="dropdown-item" href="#">Editer Profil</a>
+            <a class="dropdown-item" href="#">Modifier mot de passe</a>
+            <a class="dropdown-item" href="#">Mes cours</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Deconnexion</a>
+        </li>
 
+      </ul>
 
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'home:home' %}">Formations en ligne</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="{% url 'home:home' %}">Accueil</a></li>
-      <li><a href="#">Formations</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Etudiant<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="{% url 'change_password'%}">Modifier mot de passe</a></li>
-          <li><a href="{% url 'edit_profile'%}">Editer profil</a></li>
-          <li><a href="{% url 'training:my_training' %}">Mes formations</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Formateur<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="{% url 'change_password'%}">Modifier mot de passe</a></li>
-          <li><a href="{% url 'edit_profile'%}">Editer profil</a></li>
-          <li><a href="{% url 'teacher:courses_teacher' %}">Mes cours</a></li>
-        </ul>
-      </li>
-      <li><a href="{% url 'logout' %}">Deconnexion</a>  </li>
-    </ul>
-
-
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="{% url 'sign_up'%}"><span class="glyphicon glyphicon-user"></span>Inscription</a></li>
-      <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Connexion</a></li>
-    </ul>
   </div>
 </nav>

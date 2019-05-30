@@ -19,6 +19,7 @@ class Attendance(models.Model):
     attendance_choices = models.PositiveSmallIntegerField(choices=ATTENDANCE_CHOICES, default=2, verbose_name='Présence')
     student= models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Etudiant',
                                 limit_choices_to={'user_type': 1}, default=1)
+
     class Meta:
         verbose_name='Présence'
         verbose_name_plural='Présences'
