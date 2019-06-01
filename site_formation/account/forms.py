@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from phonenumber_field import formfields
 from django.contrib.auth.models import User
 from .models import Profile
+from bootstrap_datepicker_plus import DatePickerInput
 
 class Sign_upForm(UserCreationForm):
     street = forms.CharField(label='',max_length=100, required=True,widget=forms.TextInput(attrs={'placeholder': 'Rue'}))
@@ -12,7 +13,7 @@ class Sign_upForm(UserCreationForm):
     locality = forms.CharField(label= '',max_length=150, required=True, widget=forms.TextInput(attrs={'placeholder': 'Localité'}))
     phone = formfields.PhoneNumberField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'Téléphone'}))
     place_of_birth = forms.CharField(label='',max_length=150, required=True, widget=forms.TextInput(attrs={'placeholder': 'Lieu de naissance'}))
-    birth_date = forms.DateField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'Date de naissance'}))
+    birth_date = forms.DateField(input_formats=['%d/%m/%Y'],label='',required=True, widget=forms.TextInput(attrs={'class':'datepicker','placeholder': 'Date de naissance'}))
     degree = forms.CharField(label='',max_length=150, required=False, widget=forms.TextInput(attrs={'placeholder': 'Diplôme'}))
 
 

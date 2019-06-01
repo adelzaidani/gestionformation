@@ -45,10 +45,14 @@ INSTALLED_APPS = [
     'billing',
     'teacher',
     'imagekit',
+    'bootstrap_datepicker_plus',
 
 
 ]
 
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

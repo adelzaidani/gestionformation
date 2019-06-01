@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% load crispy_forms_tags %}
 
+
     {% block content %}
         <div class="container">
 
@@ -24,3 +25,16 @@
         </div>
 
     {% endblock content %}
+    {% block jquery %}
+        <script>
+          $(function() {
+            $( ".datepicker" ).datepicker({
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "1900:2012",
+
+
+            });
+          });
+         </script>
+    {% endblock jquery %}
