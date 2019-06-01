@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 #Création du model Profil
@@ -18,6 +20,10 @@ class Profile(models.Model):
     birth_date=models.DateField(verbose_name='Date de naissance',null=True)
     degree=models.CharField(verbose_name='Diplome',max_length=150)
     image_profile=models.ImageField(upload_to='account',blank=True)
+    image_thumbnail = ImageSpecField(source='image_profile',
+                                     processors=[ResizeToFill(700, 400)],
+                                     format='JPEG',
+                                     options={'quality': 99})
     USER_TYPE_CHOICES = (
         (1, 'Etudiant'),
         (2, 'Formateur'),

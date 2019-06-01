@@ -1,14 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load crispy_forms_tags %}
 
     {% block content %}
-        <h1>Inscription au site</h1>
+        <div class="container">
 
-        <form class="sign_up" action="{% url 'sign_up' %}" method="POST">
-            {% csrf_token %}
-            {{form|crispy}}
+            <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Inscription</h4>
+                    <form class="sign_up" action="{% url 'sign_up' %}" method="POST">
+                        {% csrf_token %}
+                        {{form|crispy}}
 
-            <input type="submit" class="btn btn-success" value="S'inscrire">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> S'inscrire  </button>
+                        </div>
 
-        </form>
+                    </form>
+            </article>
+            </div>
+
+
+
+        </div>
+
     {% endblock content %}
