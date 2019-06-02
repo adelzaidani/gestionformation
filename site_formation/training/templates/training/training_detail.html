@@ -1,32 +1,55 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
 
 
 <div class="container">
-    <h4>{{training.name}}</h4>
+    <div class="row">
+         <div class="col-lg-1">
 
-    <h5> <span>Description</span></h5>
-        <p>{{training.description}}</p>
-    <h5> <span>Prix</span></h5>
-        <p>{{training.price}} €</p>
-    <h5> <span>Heures</span></h5>
-        <p>{{training.number_hours}}</p>
-    <h5><span>Catégorie</span></h5>
-        <p>{{training.category}}</p>
-    <h5> <span>Formateur</span></h5>
-        <p>{{training.teacher}}</p>
+         </div>
+        <div class="col-lg-11">
+             <div class="card mt-4">
+                  <img class="card-img-top img-fluid" src="{{training.image_detail_thumbnail.url}}" alt="image_training">
+                  <div class="card-body">
+                    <h3 class="card-title">{{training.name}}</h3>
 
-    <h5> <span>Sessions disponibles</span></h5>
-        <form class="choice_session" method="POST" action="">
-            {% csrf_token %}
-            {{form_session|crispy}}
-            <input type="submit" class="btn btn-success" value="S'inscrire">
-        </form>
+                    <p class="card-text">{{training.description}}</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0
+                  </div>
+             </div>
+             <div class="card card-outline-secondary my-4">
+                  <div class="card-header">
+                    Informations
+                  </div>
+                  <div class="card-body">
 
+                    <h6><strong>Durée</strong></h6>
+                    <p>{{training.number_hours}} heures</p>
+                    <hr>
+                    <h6><strong>Catégorie</strong></h6>
+                    <p>{{training.category}}</p>
+                    <hr>
+                    <h6><strong>Prix</strong></h6>
+                    <p>{{training.price}} €</p>
+                    <hr>
+                    <h6><strong>Sessions</strong></h6>
+                    <form class="choice_session" method="POST" action="">
+                        {% csrf_token %}
+                        {{form_session|crispy}}
+                        <input type="submit" class="btn btn-success" value="S'inscrire">
+                    </form>
+                  </div>
+            </div>
+
+        </div>
+    </div>
 
 
 </div>
+
 
 
 

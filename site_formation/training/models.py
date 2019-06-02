@@ -34,6 +34,11 @@ class Training(models.Model):
                                       format='JPEG',
                                       options={'quality': 99})
 
+    image_detail_thumbnail = ImageSpecField(source='image_training',
+                                     processors=[ResizeToFill(900, 400)],
+                                     format='JPEG',
+                                     options={'quality': 99})
+
 
 
     class Meta:

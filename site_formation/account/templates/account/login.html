@@ -4,24 +4,27 @@
 {% block content%}
 
 
-        <div class="container my-4">
+        <div class="row my-5">
 
-            <div class="card bg-light">
-                <article class="p-5 card-body mx-auto " style="max-width: 400px;">
-                    <h4 class="card-title mt-3 text-center">Login</h4>
+            <div class="col-sm-10 offset-sm-4 text-center">
+                <div class="card bg-light" style="max-width:400px;">
+                    <article class="p-5 card-body mx-auto " style="max-width: 400px;">
+                        <h4 class="card-title mt-3 text-center">Login</h4>
 
-                            <form class="login" method="POST">
+                                <form class="login" method="POST">
 
-                                {% csrf_token %}
-                                {{form|crispy}}
-                                <input type="submit" class="btn btn-primary btn-block" value="Login">
-                                <small class="text-muted ml-2">
-                                    <a href=" {% url 'password_reset' %}">Mot de passe oublié ? </a>
-                                </small>
+                                    {% csrf_token %}
+                                    {{form|crispy}}
+                                    <input type="submit" class="btn btn-primary btn-block" value="Login">
+                                    <small class="text-muted ml-2">
+                                        <a href=" {% url 'password_reset' %}">Mot de passe oublié ? </a>
+                                    </small>
 
-                            </form>
-                </article>
-             </div>
+                                </form>
+                    </article>
+                </div>
+            </div>
+
         </div>
 
 

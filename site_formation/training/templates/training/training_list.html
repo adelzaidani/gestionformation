@@ -1,22 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block content %}
 
+ <h2 class=" my-4 text-center">Liste des formations</h2>
 
-    <h4>Formations 2018-2019</h4>
+    <div class="my-4 container">
 
-    {% for training_one in object_list %}
+            {% for training_one in object_list %}
 
-        <h5> {{ training_one.category.name }} </h5>
+                <h5 class="my-4"> {{ training_one.category.name }} </h5>
 
-        <ul>
-            {% for training in object_list %}
-                {% if training_one.category == training.category %}
-                    <li> <a href="{% url 'training:detail_training' id=training.pk %}">{{ training }}</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+                <div class="list-group" style="max-width: 400px;">
+                    {% for training in object_list %}
+                        {% if training_one.category == training.category %}
+                             <a href="{% url 'training:detail_training' id=training.pk %}" class="list-group-item">{{ training }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
-    {% endfor%}
+            {% endfor%}
+
+
+    </div>
+
 
 
 
