@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'billing',
     'teacher',
     'imagekit',
-    'bootstrap_datepicker_plus',
+
 
 
 ]

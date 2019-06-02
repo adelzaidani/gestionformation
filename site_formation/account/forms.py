@@ -4,16 +4,16 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from phonenumber_field import formfields
 from django.contrib.auth.models import User
 from .models import Profile
-from bootstrap_datepicker_plus import DatePickerInput
+
 
 class Sign_upForm(UserCreationForm):
     street = forms.CharField(label='',max_length=100, required=True,widget=forms.TextInput(attrs={'placeholder': 'Rue'}))
     number = forms.IntegerField(label='',required=True, max_value=9999,widget=forms.TextInput(attrs={'placeholder': 'Numero'}))
     postal_code = forms.IntegerField(label='',max_value=9999, required=True,widget=forms.TextInput(attrs={'placeholder': 'Code Postal'}))
     locality = forms.CharField(label= '',max_length=150, required=True, widget=forms.TextInput(attrs={'placeholder': 'Localité'}))
-    phone = formfields.PhoneNumberField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'Téléphone'}))
+    phone = formfields.PhoneNumberField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'Téléphone (+32123456789)'}))
     place_of_birth = forms.CharField(label='',max_length=150, required=True, widget=forms.TextInput(attrs={'placeholder': 'Lieu de naissance'}))
-    birth_date = forms.DateField(input_formats=['%d/%m/%Y'],label='',required=True, widget=forms.TextInput(attrs={'class':'datepicker','placeholder': 'Date de naissance'}))
+    birth_date = forms.DateField(input_formats=['%d/%m/%Y'],label='',required=True, widget=forms.TextInput(attrs={'class':'datepicker','placeholder': 'Date de naissance (01/01/1980)'}))
     degree = forms.CharField(label='',max_length=150, required=False, widget=forms.TextInput(attrs={'placeholder': 'Diplôme'}))
 
 

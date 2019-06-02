@@ -2,16 +2,15 @@
 {% load crispy_forms_tags %}
 
 
-    {% block content %}
-        <div class="container">
 
+    {% block content %}
+        <div class="container my-4">
             <div class="card bg-light">
             <article class="card-body mx-auto" style="max-width: 400px;">
                 <h4 class="card-title mt-3 text-center">Inscription</h4>
                     <form class="sign_up" action="{% url 'sign_up' %}" method="POST">
                         {% csrf_token %}
                         {{form|crispy}}
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block"> S'inscrire  </button>
                         </div>
@@ -25,16 +24,3 @@
         </div>
 
     {% endblock content %}
-    {% block jquery %}
-        <script>
-          $(function() {
-            $( ".datepicker" ).datepicker({
-              changeMonth: true,
-              changeYear: true,
-              yearRange: "1900:2012",
-
-
-            });
-          });
-         </script>
-    {% endblock jquery %}
