@@ -46,7 +46,8 @@ def training_detail(request,id):
                                                price=price_booking,booking=registration_session.id)
 
                 return redirect('training:list_training')
-
+        else:
+            return redirect('login')
 
     else:
 

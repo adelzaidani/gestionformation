@@ -28,6 +28,7 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('billing/',include('billing.urls')),
     path('teacher/', include('teacher.urls')),
+    path('payment/',include('payment.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

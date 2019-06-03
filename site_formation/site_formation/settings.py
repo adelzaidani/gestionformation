@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'billing',
     'teacher',
     'imagekit',
+    'payment',
+    'stripe',
 
 
 
