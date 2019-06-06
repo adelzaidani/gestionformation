@@ -1,5 +1,21 @@
 {% extends 'index.html' %}
 {% block content %}
+{% if messages %}
+
+        {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger">
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} </p>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success">
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }} </p>
+                    </div>
+
+                {% endif %}
+        {% endfor %}
+
+{% endif %}
 
  <h2 class=" my-4 text-center">Liste des formations</h2>
 

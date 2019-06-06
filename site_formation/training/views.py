@@ -48,10 +48,11 @@ def training_detail(request,id):
 
                 else:
                     messages.error(request, 'Vous êtes déja inscrit à cette session !')
+                    return redirect('training:list_training')
 
             else:
                 messages.error(request, 'L\'inscription à une session est réservée à un étudiant inscrit !')
-
+                return redirect('training:list_training')
         else:
 
             return redirect('login')
