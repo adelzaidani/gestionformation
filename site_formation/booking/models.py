@@ -33,11 +33,13 @@ class RegistrationSession(models.Model):
         studentRegisterExist=staticmethod(studentRegisterExist)
 
     """
-    Méthode qui permet de savoir le nombre de place déja réservée pour une session determinée.
+    Méthode qui permet de savoir le nombre de place déja réservée pour une session determinée.    
     """
-    def number_seats_booked(self):
-        return RegistrationSession.objects.filter(session=self.session).count()
 
+    @staticmethod
+    def number_seats_booked(session):
+        return RegistrationSession.objects.filter(session=session).count()
+        number_seats_booked=staticmethod(number_seats_booked)
 
     """
     Méthode qui permet de voir le nombre de place disponible
@@ -45,7 +47,11 @@ class RegistrationSession(models.Model):
        
     """
 
-    def available_sites(self, session):
+    @staticmethod
+    def available_sites(session):
         seats_booked=RegistrationSession.number_seats_booked(session)
+        seats_max=session.seats_max
 
-        return self.seats_max - seats_booked
+        return seats_max - seats_booked
+        studentRegisterExist=staticmethod(studentRegisterExist)
+

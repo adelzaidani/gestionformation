@@ -39,14 +39,21 @@ def training_detail(request,id):
         if form_session.is_valid() and request.user.is_authenticated:
             session=form_session.cleaned_data['sessions']
             student=Profile.objects.get(user=request.user)
-            if  not RegistrationSession.studentRegisterExist(session,student):
-                registration_session=RegistrationSession.objects.create(session=session,student=student)
-                price_booking=registration_session.session.training.price
-                invoice=Invoice.objects.create(session=session,client=student,status=1,
-                                               price=price_booking,booking=registration_session.id)
 
-                return redirect('training:list_training')
+            if student.user_type == 1:
+
+                if  not RegistrationSession.studentRegisterExist(session,student):
+                    request.session['choice_session']=session
+                    return redirect('payment:payment')
+
+                else:
+                    messages.error(request, 'Vous êtes déja inscrit à cette session !')
+
+            else:
+                messages.error(request, 'L\'inscription à une session est réservée à un étudiant inscrit !')
+
         else:
+
             return redirect('login')
 
     else:

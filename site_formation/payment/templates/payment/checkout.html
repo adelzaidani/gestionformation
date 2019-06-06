@@ -96,13 +96,15 @@ button:hover {
 
 {% block content %}
 
+
 <div class="container wow fadeIn">
+    {% include 'payment/detail_payment.html' %}
 
-      <h2 class="my-5 h2 text-center">Paiement</h2>
 
-      <div class="row">
+      <div class="my-5 row">
 
-        <div class="col-md-12 mb-4">
+        <div class="col-sm-8">
+            <h5><strong>Paiement</strong></h5>
           <div class="card">
 
             <script src="https://js.stripe.com/v3/"></script>

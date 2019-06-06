@@ -6,7 +6,7 @@ from .views import checkout
 app_name='payment'
 
 urlpatterns = [
-    path('',checkout, name='checkout'),
+    path('',checkout, name='payment'),
 
 
     ]

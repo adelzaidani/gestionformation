@@ -143,6 +143,8 @@ STATICFILES_DIRS = (
 
 )
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 
 LOGIN_REDIRECT_URL='home:home'
 LOGOUT_REDIRECT_URL='home:home'

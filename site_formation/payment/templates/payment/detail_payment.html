@@ -1,0 +1,62 @@
+
+<div class="container">
+    <div class="my-4 row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>{{request.user.last_name}}  {{request.user.first_name}}</strong>
+                        <br>
+                        {{request.user.profile.number}} {{request.user.profile.street}}
+                        <br>
+                        {{request.user.profile.postal_code}} {{request.user.profile.locality}}
+                        <br>
+                        <abbr title="Phone"> {{request.user.profile.phone}}</abbr>
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>{{date_today}}</em>
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h5><strong>Détail paiement</strong></h5>
+                </div>
+                </span>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Formation</th>
+                            <th>Quantité</th>
+                            <th>Prix</th>
+                            <th class="text-center">Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-9"><em>{{request.session.choice_session.training}}</em></h4></td>
+                            <td class="col-md-1" style="text-align: center"> 1</td>
+                            <td class="col-md-1" style="text-align: center">{{request.session.choice_session.training.price}} €</td>
+                            <td class="col-md-1 text-center">{{request.session.choice_session.training.price}} €</td>
+
+                        </tr>
+                        <tr>
+
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>{{request.session.choice_session.training.price}}€</strong></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
