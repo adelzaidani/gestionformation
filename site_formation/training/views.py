@@ -93,6 +93,12 @@ def update_registration(request,id_registration):
             registration = RegistrationSession.objects.get(id=id_registration, student=request.user.profile)
             registration.status=3
             registration.save()
+
+            # Annulation statut facture + remboursement du l'etudiant
+            invoice=get_object_or_404(Invoice,booking=id_registration, user=request.user)
+            invoice.status=3
+            invoice.save()
+
         except ObjectDoesNotExist():
             messages.ERROR(request,"Votre formation n'a pas pu être annuler .")
             return redirect('training:my_training')

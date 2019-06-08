@@ -52,9 +52,9 @@
 
       #project span {
         color: #5D6975;
-        text-align: right;
-        width: 52px;
-        margin-right: 10px;
+        text-align: left;
+        width: 60px;
+        margin-right: 20px;
         display: inline-block;
         font-size: 0.8em;
       }
@@ -147,10 +147,11 @@
         <div><a href="mailto:company@example.com">adelicctfe@gmail.com</a></div>
       </div>
       <div id="project">
-        <div><span>CLIENT</span>{{invoice.client.user.last_name}} {{invoice.client.user.first_name}}</div>
-        <div><span>ADRESSE</span>{{invoice.client.street}} {{invoice.client.number}}</div>
-        <div><span>EMAIL</span> <a>{{invoice.client.user.email}}</a></div>
-        <div><span>DATE</span> {{invoice.date}}</div>
+        <div><span>CLIENT</span>{{invoice.user.last_name}} {{invoice.user.first_name}}</div>
+        <div><span>ADRESSE</span>{{invoice.user.profile.street}} {{invoice.user.profile.number}}</div>
+        <div><span>CODE POSTAL</span>{{invoice.user.profile.postal_code}}&nbsp{{invoice.user.profile.locality}}</div>
+        <div><span>EMAIL</span> <a>{{invoice.user.email}}</a></div>
+        <div><span>DATE</span>{{invoice.date}}</div>
       </div>
     </header>
     <main>
@@ -170,14 +171,14 @@
             <td class="service">{{invoice.session.id}}</td>
             <td class="service">{{invoice.booking.id}}</td>
             <td class="desc">{{invoice.session.training.name}}</td>
-            <td class="unit">{{invoice.session.training.price}}</td>
+            <td class="unit">{{invoice.session.training.price}}€</td>
             <td class="qty">1</td>
-            <td class="total">{{invoice.session.training.price}} €</td>
+            <td class="total">{{invoice.session.training.price}}€</td>
           </tr>
 
           <tr>
             <td colspan="5" class="grand total">TOTAL TTC</td>
-            <td class="grand total">{{invoice.session.training.price}} €</td>
+            <td class="grand total">{{invoice.session.training.price}}€</td>
           </tr>
         </tbody>
       </table>

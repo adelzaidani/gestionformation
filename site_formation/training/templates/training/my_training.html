@@ -1,17 +1,24 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
+
+
 {% block content %}
+<style>
+.row{
+    min-height:460px;
+}
+</style>
 <div class="container">
       {% if messages %}
         <div class="alert alert-info">
             {% for message in messages %}
-                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
             {% endfor %}
         </div>
     {% endif %}
     <div class="row">
-        <div class="col-sm-10">
-            <h4>Liste des inscriptions aux formations</h4>
+        <div class="col-sm-12">
+            <h4 class="my-4">Liste des inscriptions aux formations</h4>
 
             {% if not booking_user %}
                 <p>Vous n'avez pas d'inscription ! </p>
@@ -20,12 +27,15 @@
                 <table class="table table-striped">
                       <thead>
                         <tr>
+                          <th scope="col">N°</th>
                           <th scope="col">Formations</th>
                           <th scope="col">Date de début</th>
                           <th scope="col">Date de fin</th>
                           <th scope="col">Date d'inscription</th>
                           <th scope="col">Prix</th>
                           <th scope="col">Statut</th>
+                          <th scope="col">Facture</th>
+                          <th scope="col">Annulation</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -33,7 +43,7 @@
                                 <tr>
                                     <form class="update_status" method="POST" action="{% url 'training:update_registration' id_registration=booking.pk %}">
                                         {% csrf_token %}
-                                        <td class="hide">{{booking.id}}</td>
+                                        <td>{{booking.id}}</td>
                                         <td>{{booking.session.training.name}}</td>
                                         <td>{{booking.session.date_of_begin}}</td>
                                         <td>{{booking.session.date_of_finish}}</td>
@@ -55,6 +65,7 @@
 
 
     </div>
+
 
 </div>
 

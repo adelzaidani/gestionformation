@@ -11,8 +11,8 @@ print_invoice() permet d'afficher la facture d'une session sous le format pdf
 utilisation de la librairie pdfkit.
 '''
 def print_invoice(request,id_session ):
-    client = request.user.profile
-    invoice = get_object_or_404(Invoice.objects.filter(session=id_session, client=client))
+    user_invoice = request.user
+    invoice = get_object_or_404(Invoice.objects.filter(session=id_session, user=user_invoice))
     
     template = get_template('billing/invoice.html')
     html = template.render({'invoice': invoice})
@@ -24,8 +24,8 @@ def print_invoice(request,id_session ):
     pdf = pdfkit.from_string(html,False,options)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment ; filename = facture'+str(invoice.id)+\
-                                      '_'+str(invoice.session.training.name)+\
-                                      '_'+str(invoice.client.user.last_name)+'.pdf'
+                                      '_'+str(invoice.session.id)+\
+                                      '_'+str(invoice.user.id)+'.pdf'
     return response
 
 

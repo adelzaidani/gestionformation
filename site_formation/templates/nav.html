@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Gestion formations</a>
+    <a class="navbar-brand" href="{% url 'home:home' %}">Gestion formations</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,9 +21,9 @@
             Espace étudiant
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-            <a class="dropdown-item" href="#">Editer profil</a>
-            <a class="dropdown-item" href="#">Modifier mot de passe</a>
-            <a class="dropdown-item" href="#">Mes formations</a>
+            <a class="dropdown-item" href="{% url 'edit_profile' %}">Editer profil</a>
+            <a class="dropdown-item" href="{% url 'change_password' %}">Modifier mot de passe</a>
+            <a class="dropdown-item" href="{% url 'training:my_training' %}">Mes formations</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -31,9 +31,9 @@
             Espace Formateur
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-            <a class="dropdown-item" href="#">Editer Profil</a>
-            <a class="dropdown-item" href="#">Modifier mot de passe</a>
-            <a class="dropdown-item" href="#">Mes cours</a>
+            <a class="dropdown-item" href="{% url 'edit_profile' %}">Editer Profil</a>
+            <a class="dropdown-item" href="{% url 'change_password' %}">Modifier mot de passe</a>
+            <a class="dropdown-item" href="{% url 'teacher:courses_teacher' %}">Mes cours</a>
           </div>
         </li>
         <li class="nav-item">

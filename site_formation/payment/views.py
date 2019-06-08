@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from datetime import  datetime
 from booking.models import RegistrationSession
@@ -15,7 +15,11 @@ stripe.api_key=settings.STRIPE_SECRET_KEY
 def checkout(request):
     publish_key=settings.STRIPE_PUBLIC_KEY
     token = request.POST.get('stripeToken')
-    session=Session.objects.get(id=request.session['choice_session'].id)
+    if 'choice_session' in request.session:
+        session=get_object_or_404(Session,id=request.session['choice_session'].id)
+    else:
+        messages.error(request,'Erreur: accès interdit à cette page !')
+        return redirect('training:list_training')
     student=request.user.profile
     user=request.user
     price=session.training.price
@@ -56,6 +60,8 @@ def checkout(request):
                 price=price
 
             )
+            del request.session['choice_session']
+
             messages.success(request, "Votre paiement a été réalisé avec success !")
             return redirect("training:list_training")
 
