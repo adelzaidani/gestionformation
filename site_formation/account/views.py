@@ -50,7 +50,7 @@ def editProfile(request):
     else:
         form_user = EditUserForm(instance=request.user)
         form_profile=EditProfileForm(instance=request.user.profile)
-        return render(request,'account/edit_profile.html',{'form_user':form_user, 'form_profile':form_profile})
+        return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
 
 
 def password_change(request):
