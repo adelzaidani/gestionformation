@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
+
 class Sign_upForm(UserCreationForm):
     street = forms.CharField(label='',max_length=100, required=True,widget=forms.TextInput(attrs={'placeholder': 'Rue'}))
     number = forms.IntegerField(label='',required=True, max_value=9999,widget=forms.TextInput(attrs={'placeholder': 'Numero'}))
@@ -51,13 +52,13 @@ class Sign_upForm(UserCreationForm):
         self.fields['password1'].widget = forms.PasswordInput(attrs={'placeholder':'Mot de passe'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Confirmer mot de passe'})
 
-class EditUserForm(UserChangeForm):
+class EditUserForm(ModelForm):
 
    class Meta:
 
         model=User
 
-        fields=('last_name','first_name','username', 'email','password')
+        fields=('last_name','first_name', 'email','username')
 
 
 
@@ -71,6 +72,7 @@ class EditProfileForm(ModelForm):
     place_of_birth = forms.CharField(label='Lieu de naissance', max_length=150, required=True)
     birth_date = forms.DateField(label='Date de naissance', required=True)
     degree = forms.CharField(label='Diplôme', max_length=150, required=False)
+
 
     class Meta:
         model= Profile

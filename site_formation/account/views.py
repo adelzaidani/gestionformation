@@ -6,7 +6,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from .models import Profile
-
+from django.contrib import messages
+from django.db import transaction
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -37,20 +39,26 @@ def sign_up(request):
 
 
 
-
+@login_required
+@transaction.atomic
 def editProfile(request):
-    if request.method== 'POST':
+    if request.method == 'POST':
         form_user=EditUserForm(request.POST,instance=request.user)
         form_profile = EditProfileForm(request.POST, instance=request.user.profile)
-
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()
             form_profile.save()
-            return render(request,'account/edit_profile.html')
+            print('c bon')
+            messages.success(request,'Votre profil a été mise à jour avec succès ')
+            return render(request,'account/test_profile.html')
+        else:
+            print('error')
+            messages.error(request,'Veuillez corriger les érreurs svp ! ')
+
     else:
         form_user = EditUserForm(instance=request.user)
         form_profile=EditProfileForm(instance=request.user.profile)
-        return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
+    return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
 
 
 def password_change(request):

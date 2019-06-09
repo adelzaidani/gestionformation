@@ -19,9 +19,14 @@ class Profile(models.Model):
     place_of_birth=models.CharField(verbose_name='Lieu de naissance',max_length=150)
     birth_date=models.DateField(verbose_name='Date de naissance',null=True)
     degree=models.CharField(verbose_name='Diplome',max_length=150)
-    image_profile=models.ImageField(upload_to='account',blank=True)
+    image_profile=models.ImageField(upload_to='account', blank=True)
     image_thumbnail = ImageSpecField(source='image_profile',
                                      processors=[ResizeToFill(700, 400)],
+                                     format='JPEG',
+                                     options={'quality': 99})
+
+    image_profile_thumbnail=ImageSpecField(source='image_profile',
+                                     processors=[ResizeToFill(180, 180)],
                                      format='JPEG',
                                      options={'quality': 99})
     USER_TYPE_CHOICES = (
