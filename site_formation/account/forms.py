@@ -64,7 +64,15 @@ class EditUserForm(ModelForm):
 
 class EditProfileForm(ModelForm):
 
-    street = forms.CharField(label='Rue', max_length=100, required=True)
+    street = forms.CharField(label='Rue',required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+
+
+        }
+
+
+    ))
     number = forms.IntegerField(label='Numéro', required=True, max_value=9999)
     postal_code = forms.IntegerField(label='Code Postal', max_value=9999, required=True)
     locality = forms.CharField(label='Localité', max_length=150, required=True)

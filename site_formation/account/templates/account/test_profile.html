@@ -15,10 +15,10 @@
             <div class="row">
             <div class="col-sm-3"><!--left col-->
 
-               <!--   <div class="text-left">
-                     <img src="{{request.user.profile.image_profile_thumbnail.url}}" alt="image{{user.first_name}}">
+             <div class="text-left">
+                 <img src="{{request.user.profile.image_profile_thumbnail.url}}" alt="image{{user.first_name}}">
 
-                  </div>-->
+             </div>
 
 
             </div>
@@ -26,55 +26,61 @@
             <div class="col-sm-9">
                 <div class="row">
                    <div class="col-md-6">
-                        {{form_user.last_name|as_crispy_field:"bootstrap"}}
+                       <div class="form-group">
+                           {{form_user.last_name}}
+                       </div>
+
                    </div>
 
                    <div class="col-md-6">
-                        {{form_user.first_name|as_crispy_field:"bootstrap"}}
+                       <div class="form-group">
+                          {{form_user.first_name}}
+                       </div>
+
                    </div>
                </div>
 
                <div class="row">
                    <div class=" col-md-6">
-                        {{form_user.email|as_crispy_field:"bootstrap"}}
+                        {{form_user.email}}
                    </div>
 
                    <div class=" col-md-6">
-                        {{form_user.username|as_crispy_field:"bootstrap"}}
+                        {{form_user.username}}
                    </div>
                </div>
                <div class="row">
                    <div class="col-md-4">
-                        {{form_profile.street|as_crispy_field:"bootstrap"}}
+                        {{form_profile.street}}
                    </div>
                     <div class="col-md-2">
-                        {{form_profile.number|as_crispy_field:"bootstrap"}}
+                        {{form_profile.number}}
                    </div>
                    <div class="col-md-3">
-                        {{form_profile.postal_code|as_crispy_field:"bootstrap"}}
+                        {{form_profile.postal_code}}
                    </div>
 
                    <div class="col-md-3">
-                        {{form_profile.locality|as_crispy_field:"bootstrap"}}
+                        {{form_profile.locality}}
                    </div>
                </div>
                 <div class="row">
                    <div class="col-md-6">
-                         {{form_profile.place_of_birth|as_crispy_field:"bootstrap"}}
+                         {{form_profile.place_of_birth}}
                    </div>
 
                    <div class="col-md-6">
-                       {{form_profile.birth_date|as_crispy_field:"bootstrap"}}
+                       {{form_profile.birth_date}}
                    </div>
                </div>
                <div class="row">
                    <div class="col-md-6">
-                       {{form_profile.phone|as_crispy_field:"bootstrap"}}
+                       {{form_profile.phone}}
 
 
                    </div>
                     <div class="col-md-6">
-                       {{form_profile.degree|as_crispy_field:"bootstrap"}}
+                       {{form_profile.degree}}
                    </div>
                </div>
 
