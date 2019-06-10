@@ -43,14 +43,14 @@ def sign_up(request):
 @transaction.atomic
 def editProfile(request):
     if request.method == 'POST':
-        form_user=EditUserForm(request.POST,instance=request.user)
-        form_profile = EditProfileForm(request.POST, instance=request.user.profile)
+        form_user=EditUserForm(request.POST,request.FILES,instance=request.user)
+        form_profile = EditProfileForm(request.POST,request.FILES, instance=request.user.profile)
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()
             form_profile.save()
             print('c bon')
             messages.success(request,'Votre profil a été mise à jour avec succès ')
-            return render(request,'account/test_profile.html')
+            return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
         else:
             print('error')
             messages.error(request,'Veuillez corriger les érreurs svp ! ')

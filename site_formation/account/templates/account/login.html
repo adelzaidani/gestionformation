@@ -3,52 +3,31 @@
 {% load static %}
 {% block content%}
 
+{% block head %}  <link href="{% static 'account/css/login.css' %}" rel="stylesheet"> {% endblock head %}
 
-        <div class="row my-5">
+<div class=" my-4 container">
 
-            <div class="col-sm-10 offset-sm-4 text-center">
-                <div class="card bg-light" style="max-width:400px;">
-                    <article class="p-5 card-body mx-auto " style="max-width: 400px;">
-                        <h4 class="card-title mt-3 text-center">Login</h4>
-
-                                <form class="login" method="POST">
-
-                                    {% csrf_token %}
-                                    {{form|crispy}}
-                                    <input type="submit" class="btn btn-primary btn-block" value="Login">
-                                    <small class="text-muted ml-2">
-                                        <a href=" {% url 'password_reset' %}">Mot de passe oublié ? </a>
-                                    </small>
-
-                                </form>
-                    </article>
-                </div>
-            </div>
-
-        </div>
-
-
+    <div  class="row justify-content-center">
+          <div  class="col-5">
+            <h1  class="text-center">Authentification</h1>
+              <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Connectez-vous à votre compte</h4>
+                        <form class="login" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                         <small class="text-muted ml-2">
+                             <a href=" {% url 'password_reset' %}">Mot de passe oublié ? </a>
+                         </small>
+                        <button type="submit" class="btn btn-primary btn-block">Connexion</button>
+                        </form>
+                    </div>
+              </div>
+          </div>
+    </div>
+</div>
 
 
 
 {% endblock content %}
 
-
-
-<div class="container-fluid h-100">
-    <div class="row justify-content-center align-items-center h-100">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-            <form action="">
-                <div class="form-group">
-                    <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="User email" type="text">
-                </div>
-                <div class="form-group">
-                    <input class="form-control form-control-lg" placeholder="Password" type="password">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-info btn-lg btn-block">Sign In</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>

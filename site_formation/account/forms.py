@@ -60,6 +60,26 @@ class EditUserForm(ModelForm):
 
         fields=('last_name','first_name', 'email','username')
 
+        labels = {
+               'last_name': 'Nom',
+               'first_name': 'Prenom',
+               'email': 'Adresse électronique',
+               'username': 'Nom d\'utilisateur',
+        }
+
+        widgets = {
+           'last_name': forms.fields.TextInput(attrs={'placeholder': 'Nom',
+                                                      'class':'form-control'}),
+           'first_name': forms.fields.TextInput(attrs={'placeholder': 'Prénom',
+                                                       'class':'form-control'}),
+           'username': forms.fields.TextInput(attrs={'placeholder': 'Nom d \'utilisateur',
+                                                     'class':'form-control'}),
+           'email': forms.fields.TextInput(attrs={'placeholder': 'Email',
+                                                  'class':'form-control'}),
+
+
+        }
+
 
 
 class EditProfileForm(ModelForm):
@@ -68,18 +88,53 @@ class EditProfileForm(ModelForm):
         attrs={
             'class':'form-control',
 
+        }
+    ))
+    number = forms.IntegerField(label='Numéro', required=True, max_value=9999, widget=forms.NumberInput(
+        attrs={
+            'class':'form-control',
 
+        }
+
+    ))
+    postal_code = forms.IntegerField(label='Code Postal', max_value=9999, required=True,widget=forms.NumberInput(
+        attrs={
+            'class':'form-control',
+        }
+    ))
+    locality = forms.CharField(label='Localité', max_length=150, required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+        }
+    ))
+    phone = formfields.PhoneNumberField(label='Téléphone', required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+        }
+    ))
+    place_of_birth = forms.CharField(label='Lieu de naissance', max_length=150, required=True, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
         }
 
 
     ))
-    number = forms.IntegerField(label='Numéro', required=True, max_value=9999)
-    postal_code = forms.IntegerField(label='Code Postal', max_value=9999, required=True)
-    locality = forms.CharField(label='Localité', max_length=150, required=True)
-    phone = formfields.PhoneNumberField(label='Téléphone', required=True)
-    place_of_birth = forms.CharField(label='Lieu de naissance', max_length=150, required=True)
-    birth_date = forms.DateField(label='Date de naissance', required=True)
-    degree = forms.CharField(label='Diplôme', max_length=150, required=False)
+    birth_date = forms.DateField(label='Date de naissance', required=True,widget=forms.DateInput(
+        attrs={
+            'class':'form-control',
+        }
+
+
+    ))
+    degree = forms.CharField(label='Diplôme', max_length=150, required=False, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+        }
+
+
+    ))
+
+    image_profile=forms.ImageField(label='Photo du profil',required=False)
 
 
     class Meta:
@@ -87,4 +142,4 @@ class EditProfileForm(ModelForm):
 
         fields=('street','number','postal_code','locality','phone',
                   'place_of_birth','birth_date',
-                  'degree')
+                  'degree','image_profile')

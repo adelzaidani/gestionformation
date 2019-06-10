@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 {% include 'messages.html'%}
 <div class=" my-4 container">
     <div class="row">
@@ -10,16 +11,18 @@
     <br>
 
 
-          <form method="post">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
             <div class="col-sm-3"><!--left col-->
 
-             <div class="text-left">
-                 <img src="{{request.user.profile.image_profile_thumbnail.url}}" alt="image{{user.first_name}}">
-
-             </div>
-
+                 <div class="img">
+                     {% if not request.user.profile.image_profile %}
+                         <img src="/media/account/no_image.jpg" class="img-thumbnail" alt="no_image">
+                     {%else %}
+                         <img  src="{{request.user.profile.image_profile.url}}" class="img-thumbnail" alt="image{{user.first_name}}">
+                     {% endif %}
+                 </div>
 
             </div>
 
@@ -27,6 +30,7 @@
                 <div class="row">
                    <div class="col-md-6">
                        <div class="form-group">
+                           {{form_user.last_name.label}}
                            {{form_user.last_name}}
                        </div>
 
@@ -34,6 +38,7 @@
 
                    <div class="col-md-6">
                        <div class="form-group">
+                           {{form_user.first_name.label}}
                           {{form_user.first_name}}
                        </div>
 
@@ -42,48 +47,84 @@
 
                <div class="row">
                    <div class=" col-md-6">
+                       <div class="form-group">
+                        {{form_user.email.label}}
                         {{form_user.email}}
+                       </div>
                    </div>
 
                    <div class=" col-md-6">
+                       <div class="form-group">
+                        {{form_user.username.label}}
                         {{form_user.username}}
+                       </div>
                    </div>
                </div>
                <div class="row">
                    <div class="col-md-4">
-                        {{form_profile.street}}
+                       <div class="form-group">
+                           {{form_profile.street.label}}
+                          {{form_profile.street}}
+                       </div>
+
                    </div>
                     <div class="col-md-2">
-                        {{form_profile.number}}
+                        <div class="form-group">
+                            {{form_profile.number.label}}
+                            {{form_profile.number}}
+                        </div>
                    </div>
                    <div class="col-md-3">
+                       <div class="form-group">
+                        {{form_profile.postal_code.label}}
                         {{form_profile.postal_code}}
+                       </div>
                    </div>
 
                    <div class="col-md-3">
+                       <div class="form-group">
+                        {{form_profile.locality.label}}
                         {{form_profile.locality}}
+                       </div>
                    </div>
                </div>
                 <div class="row">
                    <div class="col-md-6">
+                       <div class="form-group">
+                         {{form_profile.place_of_birth.label}}
                          {{form_profile.place_of_birth}}
+                       </div>
                    </div>
 
                    <div class="col-md-6">
+                       <div class="form-group">
+                        {{form_profile.birth_date.label}}
                        {{form_profile.birth_date}}
+                       </div>
                    </div>
                </div>
                <div class="row">
-                   <div class="col-md-6">
-                       {{form_profile.phone}}
-
-
-                   </div>
                     <div class="col-md-6">
-                       {{form_profile.degree}}
+                      <div class="form-group">
+                        {{form_profile.phone.label}}
+                        {{form_profile.phone}}
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{form_profile.degree.label}}
+                            {{form_profile.degree}}
+                        </div>
                    </div>
                </div>
-
+               <div class="row">
+                   <div class="col-md-12">
+                        {{form_profile.image_profile.label}}
+                        {{form_profile.image_profile}}
+                   </div>
+               </div>
+                <br>
                 <input type="submit" class="btn btn-success" value="Editer profil">
             </div>
           </div>
