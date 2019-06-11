@@ -8,22 +8,23 @@ import json
 from django.core import serializers
 from django.http import JsonResponse
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 
+@login_required(login_url='/account/login/')
 def session_teacher(request):
     teacher=request.user.profile
     session_teacher=get_list_or_404(Session.objects.filter(teacher=teacher))
     return render(request,'teacher/my_courses_teacher.html',{'session_teacher':session_teacher})
 
-
+@login_required(login_url='/account/login/')
 def training_student(request,id_session):
     teacher = request.user.profile
     test_session = get_object_or_404(Session.objects.filter(teacher=teacher, id=id_session))
     registrations = get_list_or_404(RegistrationSession.objects.filter(session=id_session, status=2))
     return render(request,'teacher/list_students.html',{'registrations':registrations})
 
-
+@login_required(login_url='/account/login/')
 def list_attendance(request,id_session):
     teacher=request.user.profile
     session = get_object_or_404(Session.objects.filter(teacher=teacher, id=id_session))
@@ -36,6 +37,7 @@ def list_attendance(request,id_session):
     return render(request,'teacher/list_attendance.html',{'attendances':attendances,'session':session})
 
 @csrf_exempt
+@login_required(login_url='/account/login/')
 def list_attendance_date_change(request):
 
     if request.is_ajax():
@@ -75,7 +77,7 @@ def list_attendance_date_change(request):
 
 
 
-
+@login_required(login_url='/account/login/')
 def list_assessment(request,id_session):
     teacher=request.user.profile
     session = get_object_or_404(Session.objects.filter(teacher=teacher, id=id_session))
@@ -88,6 +90,7 @@ def list_assessment(request,id_session):
     return render(request,'teacher/list_assessment.html',{'assessments':assessments,'session':session})
 
 @csrf_exempt
+@login_required(login_url='/account/login/')
 def save_attendance(request):
 
     data = {
@@ -125,6 +128,7 @@ def save_attendance(request):
     return JsonResponse(data)
 
 @csrf_exempt
+@login_required(login_url='/account/login/')
 def save_assessment(request):
 
     data={

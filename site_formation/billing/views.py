@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.template.loader import get_template
 from django.http import HttpResponse
-
+from django.contrib.auth.decorators import login_required
 import pdfkit
 
 from .models import Invoice
@@ -10,6 +10,7 @@ from .models import Invoice
 print_invoice() permet d'afficher la facture d'une session sous le format pdf
 utilisation de la librairie pdfkit.
 '''
+@login_required(login_url='/account/login/')
 def print_invoice(request,id_session ):
     user_invoice = request.user
     invoice = get_object_or_404(Invoice.objects.filter(session=id_session, user=user_invoice))

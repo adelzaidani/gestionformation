@@ -31,6 +31,7 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
+            messages.success(request,'l\'inscription a été effectuée avec succès.')
             return redirect('home:home')
     else:
         form = Sign_upForm()
@@ -39,7 +40,7 @@ def sign_up(request):
 
 
 
-@login_required
+@login_required(login_url='/account/login/')
 @transaction.atomic
 def editProfile(request):
     if request.method == 'POST':
@@ -48,19 +49,17 @@ def editProfile(request):
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()
             form_profile.save()
-            print('c bon')
             messages.success(request,'Votre profil a été mise à jour avec succès ')
-            return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
+            return render(request,'account/edit_profile.html',{'form_user':form_user, 'form_profile':form_profile})
         else:
-            print('error')
-            messages.error(request,'Veuillez corriger les érreurs svp ! ')
+            messages.error(request,'Veuillez corriger les erreurs svp ! ')
 
     else:
         form_user = EditUserForm(instance=request.user)
         form_profile=EditProfileForm(instance=request.user.profile)
-    return render(request,'account/test_profile.html',{'form_user':form_user, 'form_profile':form_profile})
+    return render(request,'account/edit_profile.html',{'form_user':form_user, 'form_profile':form_profile})
 
-
+@login_required(login_url='/account/login/')
 def password_change(request):
     if request.method=='POST':
         form=PasswordChangeForm(data=request.POST,user=request.user)

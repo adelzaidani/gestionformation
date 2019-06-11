@@ -4,11 +4,14 @@
 {% load static %}
 {% include 'messages.html'%}
 <div class=" my-4 container">
-    <div class="row">
-        <div class="col-sm-12"><h1>{{request.user.username}}</h1></div>
 
-    </div>
-    <br>
+
+
+        <div class="row">
+            <div class="col-sm-12"><h1>{{request.user.username}}</h1></div>
+
+        </div>
+         <br>
 
 
           <form method="post" enctype="multipart/form-data">
@@ -19,7 +22,7 @@
                  <div class="img">
                      {% if not request.user.profile.image_profile %}
                          <img src="/media/account/no_image.jpg" class="img-thumbnail" alt="no_image">
-                     {%else %}
+                     {% else %}
                          <img  src="{{request.user.profile.image_profile.url}}" class="img-thumbnail" alt="image{{user.first_name}}">
                      {% endif %}
                  </div>
@@ -27,6 +30,7 @@
             </div>
 
             <div class="col-sm-9">
+
                 <div class="row">
                    <div class="col-md-6">
                        <div class="form-group">
@@ -43,9 +47,9 @@
                        </div>
 
                    </div>
-               </div>
+                 </div>
 
-               <div class="row">
+                <div class="row">
                    <div class=" col-md-6">
                        <div class="form-group">
                         {{form_user.email.label}}
@@ -59,8 +63,8 @@
                         {{form_user.username}}
                        </div>
                    </div>
-               </div>
-               <div class="row">
+                </div>
+                <div class="row">
                    <div class="col-md-4">
                        <div class="form-group">
                            {{form_profile.street.label}}
@@ -87,7 +91,7 @@
                         {{form_profile.locality}}
                        </div>
                    </div>
-               </div>
+                </div>
                 <div class="row">
                    <div class="col-md-6">
                        <div class="form-group">
@@ -102,8 +106,8 @@
                        {{form_profile.birth_date}}
                        </div>
                    </div>
-               </div>
-               <div class="row">
+                 </div>
+                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         {{form_profile.phone.label}}
@@ -117,15 +121,16 @@
                             {{form_profile.degree}}
                         </div>
                    </div>
-               </div>
-               <div class="row">
-                   <div class="col-md-12">
+                 </div>
+                 <div class="row">
+                    <div class="col-md-12">
                         {{form_profile.image_profile.label}}
                         {{form_profile.image_profile}}
-                   </div>
-               </div>
-                <br>
-                <input type="submit" class="btn btn-success" value="Editer profil">
+                     </div>
+                 </div>
+                 <br>
+                 <input type="submit" class="btn btn-success" value="Editer profil">
+
             </div>
           </div>
           </form>
