@@ -1,35 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'messages.html' %}
+{% load static %}
+
 
  <h2 class=" my-4 text-left">Catalogue des formations</h2>
 
-    <div class="my-4 container">
-
-            <div class="col-5">
+    <div class=" my-4 container mt-3">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-sm center">
                 <p><center>Rechercher une formation</center></p>
                 <input class="form-control" id="myInput" type="text" placeholder="Recherche ...">
-
             </div>
+            <div class="col"></div>
+        </div>
 
+            <div class="container mt-3">
             {% for training_one in object_list %}
 
-                <h5 class="my-4"> {{ training_one.category.name }} </h5>
 
-
-                <div class="list-group" id="list_training">
+                    <h5 class="my-4"> {{ training_one.category.name }} </h5>
                     {% for training in object_list %}
+                        <ul class="list-group" id="list_training">
                         {% if training_one.category == training.category %}
-                             <a href="{% url 'training:detail_training' id=training.pk %}" class="list-group-item">{{ training }}</a>
+                        <li class="list-group-item"><a href="{% url 'training:detail_training' id=training.pk %}">{{ training }}</a></li>
                         {% endif %}
+                        </ul>
                     {% endfor %}
-                </div>
 
             {% endfor%}
+            </div>
     </div>
 
 
 
 
-
 {% endblock content %}
+
+{% block script %}
+<script src="{%static 'account/js/training_list.js'%}"></script>
+
+{% endblock script %}
