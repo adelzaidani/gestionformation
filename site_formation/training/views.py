@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 from .models import Training, Session
 from django.shortcuts import get_object_or_404
 from .forms import ChoiceSessionForm
@@ -9,6 +8,7 @@ from billing.models import Invoice
 from account.models import Profile
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -76,6 +76,7 @@ def training_detail(request,id):
 La vue my_training va permettre d'afficher l'ensemble des réservations de formations pour
 un utilisateur déterminé.
 '''
+@login_required(login_url='/account/login/')
 def my_training(request):
 
     current_user=request.user.profile
@@ -86,6 +87,7 @@ def my_training(request):
 La vue update_registration permet d'annuler une inscription elle prend 
 comme paramètre request et l'id de l'inscription.
 '''
+@login_required(login_url='/account/login/')
 def update_registration(request,id_registration):
 
     if request.method== 'POST':

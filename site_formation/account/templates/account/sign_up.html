@@ -4,8 +4,9 @@
 {% block content %}
 <div class="my-5 container">
     <div  class="card">
+        <div class="card-header"><strong>Inscription</strong></div>
         <div class="card-body">
-              <h4 class="card-title">Inscription</h4>
+
 
             <form class="sign_up" action="{% url 'sign_up' %}" method="POST" >
                     {% csrf_token %}

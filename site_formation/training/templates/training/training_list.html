@@ -2,15 +2,22 @@
 {% block content %}
 {% include 'messages.html' %}
 
- <h2 class=" my-4 text-center">Liste des formations</h2>
+ <h2 class=" my-4 text-left">Catalogue des formations</h2>
 
     <div class="my-4 container">
+
+            <div class="col-5">
+                <p><center>Rechercher une formation</center></p>
+                <input class="form-control" id="myInput" type="text" placeholder="Recherche ...">
+
+            </div>
 
             {% for training_one in object_list %}
 
                 <h5 class="my-4"> {{ training_one.category.name }} </h5>
 
-                <div class="list-group" style="max-width: 400px;">
+
+                <div class="list-group" id="list_training">
                     {% for training in object_list %}
                         {% if training_one.category == training.category %}
                              <a href="{% url 'training:detail_training' id=training.pk %}" class="list-group-item">{{ training }}</a>
@@ -19,8 +26,6 @@
                 </div>
 
             {% endfor%}
-
-
     </div>
 
 
