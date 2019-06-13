@@ -22,7 +22,7 @@ class RegistrationSession(models.Model):
         verbose_name_plural='Inscription aux sessions'
 
     def __str__(self):
-        return self.session.__str__()
+        return str(self.id)
 
     @staticmethod
     def studentRegisterExist(session,student):

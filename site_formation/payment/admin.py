@@ -1,20 +1,52 @@
 from django.contrib import admin
-from .models import Payment
+from .models import Payment, PaymentSummary
 from django.contrib.admin.views.main import ChangeList
-from django.db.models import Sum, Avg
+from django.db.models import Sum, Avg, Count
 from totalsum.admin import TotalsumAdmin
 
 
 
+@admin.register(Payment)
+class PaymentSummaryAdmin(admin.ModelAdmin):
+    change_list_template = 'admin/payment_summary_change_list.html'
+    date_hierarchy = 'created'
+
+    def changelist_view(self, request, extra_context=None):
+        response = super().changelist_view(
+            request,
+            extra_context=extra_context,
+        )
+
+        try:
+            qs = response.context_data['cl'].queryset
+        except (AttributeError, KeyError):
+            return response
+
+        metrics = {
+            'total': Count('id'),
+            'total_sales': Sum('amount'),
+        }
+
+        response.context_data['summary'] = list(
+            qs
+            .values('session')
+            .annotate(**metrics)
+            .order_by('-total_sales')
+        )
+
+        return response
 
 
 
 
+'''
 class PaymentAdmin(TotalsumAdmin):
-    list_display = ['id', 'user', 'date_payment', 'booking', 'stripe_charge_id', 'amount']
+    list_display = ['id', 'user', 'date_payment', 'booking','session','stripe_charge_id', 'amount']
     totalsum_list = ['amount']
+
     unit_of_measure = '&euro;'
 
 
-admin.site.register(Payment,PaymentAdmin)
 
+admin.site.register(Payment,PaymentAdmin)
+'''

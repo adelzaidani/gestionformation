@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from booking.models import RegistrationSession
+from training.models import Session
 
 
 class Payment(models.Model):
@@ -10,7 +11,7 @@ class Payment(models.Model):
     date_payment = models.DateTimeField(verbose_name='Date de paiement',auto_now_add=True)
     booking = models.ForeignKey(RegistrationSession, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name='Reservation')
-
+    session=models.ForeignKey(Session,on_delete=models.SET_NULL,null=True,blank=True,default=4)
     class Meta:
         verbose_name='Paiement'
         verbose_name_plural='Paiements'
@@ -19,3 +20,8 @@ class Payment(models.Model):
         return self.user.first_name + ' '+ self.user.last_name
 
 
+class PaymentSummary(Payment):
+    class Meta:
+        proxy = True
+        verbose_name = 'Sale Summary'
+        verbose_name_plural = 'Sales Summary'

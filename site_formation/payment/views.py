@@ -48,7 +48,8 @@ def checkout(request):
                 stripe_charge_id=charge['id'],
                 user=user,
                 amount=price,
-                booking=booking
+                booking=booking,
+                session=session
             )
 
 
