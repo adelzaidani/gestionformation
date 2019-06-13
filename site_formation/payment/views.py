@@ -47,7 +47,8 @@ def checkout(request):
             payment = Payment.objects.create(
                 stripe_charge_id=charge['id'],
                 user=user,
-                amount=price
+                amount=price,
+                booking=booking
             )
 
 

@@ -24,6 +24,8 @@ def training_student(request,id_session):
     registrations = get_list_or_404(RegistrationSession.objects.filter(session=id_session, status=2))
     return render(request,'teacher/list_students.html',{'registrations':registrations})
 
+
+
 @login_required(login_url='/account/login/')
 def list_attendance(request,id_session):
     teacher=request.user.profile
@@ -35,6 +37,8 @@ def list_attendance(request,id_session):
     else:
         attendances=get_list_or_404(RegistrationSession.objects.filter(session=session,status=2))
     return render(request,'teacher/list_attendance.html',{'attendances':attendances,'session':session})
+
+
 
 @csrf_exempt
 @login_required(login_url='/account/login/')

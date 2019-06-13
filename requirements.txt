@@ -6,3 +6,4 @@ django-environ
 pdfkit
 django-imagekit
 stripe
+django-totalsum-admin

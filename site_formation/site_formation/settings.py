@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'imagekit',
     'payment',
     'stripe',
+    'totalsum',
 
 
 ]
