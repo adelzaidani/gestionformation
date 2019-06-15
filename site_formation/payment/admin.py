@@ -10,8 +10,15 @@ from django.db.models.fields import DateTimeField
 
 @admin.register(PaymentSummary)
 class PaymentSummaryAdmin(admin.ModelAdmin):
+
     change_list_template = 'admin/payment_summary_change_list.html'
     date_hierarchy = 'date_payment'
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(request, obj=None):
+        return False
 
 
     def changelist_view(self, request, extra_context=None):
@@ -51,12 +58,20 @@ class PaymentSummaryAdmin(admin.ModelAdmin):
 
 
 class PaymentAdmin(TotalsumAdmin):
+    actions = None
     list_display = ['id', 'user', 'date_payment', 'booking','session','stripe_charge_id', 'amount']
     totalsum_list = ['amount']
 
     unit_of_measure = '&euro;'
 
+    def has_add_permission(self,request):
+        return False
 
+    def has_change_permission(self,request, obj=None):
+        return False
+
+    def has_delete_permission(self,request, obj=None):
+        return False
 
 admin.site.register(Payment,PaymentAdmin)
 

@@ -18,3 +18,7 @@ class Invoice(models.Model):
     status = models.PositiveSmallIntegerField(verbose_name='Statut', choices=STATUS, default=1)
     booking=models.ForeignKey(RegistrationSession, on_delete=models.SET_NULL,null=True, blank=True, verbose_name='Reservation')
     price=models.DecimalField(verbose_name='Prix',max_digits=6,decimal_places=2)
+
+    class Meta:
+        verbose_name='Facture'
+        verbose_name_plural='Factures'

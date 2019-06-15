@@ -16,6 +16,7 @@ class Payment(models.Model):
         verbose_name='Paiement'
         verbose_name_plural='Paiements'
 
+
     def __str__(self):
         return self.user.first_name + ' '+ self.user.last_name
 
@@ -23,5 +24,5 @@ class Payment(models.Model):
 class PaymentSummary(Payment):
     class Meta:
         proxy = True
-        verbose_name = 'Sale Summary'
-        verbose_name_plural = 'Sales Summary'
+        verbose_name = 'Rapport des ventes'
+        verbose_name_plural = 'Rapport des ventes'

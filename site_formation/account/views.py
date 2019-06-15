@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import Sign_upForm, EditUserForm,EditProfileForm
 from django.contrib.auth import login, authenticate, update_session_auth_hash
-from django.views.generic import DetailView
 from django.contrib.auth.forms import PasswordChangeForm
-from django.views.generic.edit import UpdateView
-from django.urls import reverse_lazy
-from .models import Profile
 from django.contrib import messages
 from django.db import transaction
 from django.contrib.auth.decorators import login_required

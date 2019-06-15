@@ -33,3 +33,7 @@ class Assessment(models.Model):
     student = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Etudiant',
                                 limit_choices_to={'user_type': 1}, default=1)
     assessment=models.PositiveSmallIntegerField(default=0,verbose_name='Evaluation')
+
+    class Meta:
+        verbose_name='Evaluations'
+        verbose_name_plural='Evaluation'
