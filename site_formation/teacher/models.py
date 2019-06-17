@@ -5,6 +5,7 @@ from training.models import Session
 from booking.models import RegistrationSession
 from django.dispatch import receiver
 from datetime import date, datetime, timedelta
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Attendance(models.Model):
     session=models.ForeignKey(Session,on_delete=models.CASCADE)
@@ -32,8 +33,12 @@ class Assessment(models.Model):
     session=models.ForeignKey(Session,on_delete=models.CASCADE)
     student = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Etudiant',
                                 limit_choices_to={'user_type': 1}, default=1)
-    assessment=models.PositiveSmallIntegerField(default=0,verbose_name='Evaluation')
+    assessment=models.PositiveSmallIntegerField(default=0,verbose_name='Evaluation',validators=[MinValueValidator(0), MaxValueValidator(100)])
+
+
+
 
     class Meta:
-        verbose_name='Evaluations'
-        verbose_name_plural='Evaluation'
+        verbose_name='Evaluation'
+        verbose_name_plural='Evaluations'
+
